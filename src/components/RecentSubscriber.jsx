@@ -38,7 +38,7 @@ const RecentSubscriber = () => {
   ];
 
   return (
-    <div className=" w-full px-6 py-6 bg-zinc-800 rounded-[20px] shadow-[0px_2px_12px_0px_rgba(44,120,220,0.08)] flex flex-col justify-start items-start gap-3">
+    <div className=" w-full px-6 py-6 bg-[#2D2D2D] rounded-[20px] shadow-[0px_2px_12px_0px_rgba(44,120,220,0.08)] flex flex-col justify-start items-start gap-3">
       {/* Card Title */}
       <div className="self-stretch text-blue-200 text-xl font-bold font-montserrat leading-loose">
         Recent Subscriber
@@ -77,10 +77,16 @@ const RecentSubscriber = () => {
             View all
           </div>
           {/* Arrow Icon */}
-         <div class="w-6 h-6 relative origin-top-left -rotate-180 overflow-hidden">
-    <div class="w-6 h-6 left-0 top-0 absolute"></div>
-    <div class="w-4 h-3 left-[3px] top-[6px] absolute bg-text-color"></div>
-</div>
+     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+  <g clip-path="url(#clip0_0_665)">
+    <path d="M3 13.2102L17.17 13.2102L13.59 16.8002L15 18.2102L21 12.2102L15 6.2102L13.59 7.6202L17.17 11.2102L3 11.2102L3 13.2102Z" fill="white"/>
+  </g>
+  <defs>
+    <clipPath id="clip0_0_665">
+      <rect width="24" height="24" fill="white" transform="translate(24 24.2102) rotate(-180)"/>
+    </clipPath>
+  </defs>
+</svg>
         </button>
       </div>
     </div>
