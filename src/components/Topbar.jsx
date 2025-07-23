@@ -13,7 +13,7 @@ export default function Topbar({ onBellClick }) {
 
   return (
     <header className="flex items-center justify-between bg-[#2D2D2D] p-1 border-b border-[#D6D6D6]">
-      <div className="flex flex-col items-center  ">
+      <div className="flex flex-col items-center  pl-14 ">
         <div className=" flex  items-center gap-2">
           <h1 className="text-[24px] font-semibold text-white"> Hello Maietry </h1>
           <span>
