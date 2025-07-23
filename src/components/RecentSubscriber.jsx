@@ -78,7 +78,7 @@ const RecentSubscriber = () => {
           </div>
           {/* Arrow Icon */}
      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
-  <g clip-path="url(#clip0_0_665)">
+  <g clipPath="url(#clip0_0_665)">
     <path d="M3 13.2102L17.17 13.2102L13.59 16.8002L15 18.2102L21 12.2102L15 6.2102L13.59 7.6202L17.17 11.2102L3 11.2102L3 13.2102Z" fill="white"/>
   </g>
   <defs>

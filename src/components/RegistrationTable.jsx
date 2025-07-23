@@ -1,202 +1,247 @@
-// components/RegistrationTable.js
-"use client"; // This is a client component, necessary for useState and event handlers
+"use client";
+import React from "react";
 
-import Image from "next/image";
-import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
-import { useState } from "react";
-import { useRouter } from "next/navigation"; // Import useRouter
+// AvatarImage client component for fallback avatar
+function AvatarImage({ src, alt }) {
+  const [imgSrc, setImgSrc] = React.useState(src);
+  return (
+    <img
+      className="h-full w-full object-cover"
+      src={imgSrc}
+      alt={alt}
+      onError={() =>
+        setImgSrc("https://placehold.co/40x40/CCCCCC/000000?text=NA")
+      }
+    />
+  );
+}
 
-// Assuming 'eye.svg' is in your public/icon directory
-import eyeIcon from "../../public/icon/eye.svg";
-
-// Dummy data updated to match the new table structure
-const dummyRows = [
-  {
-    id: "reg-001",
-    membershipId: "1234",
-    name: "Robo Gladiators",
-    avatar: "/path/to/avatar.png", // Add a path to a placeholder or real avatar
-    email: "robo.g@gmail.com",
-    registrationDate: "March 15, 2024",
-  },
-  {
-    id: "reg-002",
-    membershipId: "1235",
-    name: "Tech Titans",
-    avatar: "/path/to/avatar.png",
-    email: "titans.tech@gmail.com",
-    registrationDate: "March 16, 2024",
-  },
-  {
-    id: "reg-003",
-    membershipId: "1236",
-    name: "Circuit Breakers",
-    avatar: "/path/to/avatar.png",
-    email: "circuit.breakers@gmail.com",
-    registrationDate: "March 17, 2024",
-  },
-  {
-    id: "reg-004",
-    membershipId: "1237",
-    name: "Voltage Vipers",
-    avatar: "/path/to/avatar.png",
-    email: "vipers@gmail.com",
-    registrationDate: "March 18, 2024",
-  },
-];
-
-export default function RiderRegistration() {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [filteredRows, setFilteredRows] = useState(dummyRows);
-  const router = useRouter(); // Initialize useRouter
-
-  // Function to handle search input changes
-  const handleSearchChange = (e) => {
-    const term = e.target.value.toLowerCase();
-    setSearchTerm(term);
-
-    const newFilteredRows = dummyRows.filter(
-      (row) =>
-        row.membershipId.toLowerCase().includes(term) || // Search by Membership ID
-        row.name.toLowerCase().includes(term) ||
-        row.email.toLowerCase().includes(term) ||
-        row.registrationDate.toLowerCase().includes(term)
-    );
-    setFilteredRows(newFilteredRows);
-  };
-
-  // Original Action handlers
-  const handleView = (rowId) => {
-    router.push(`/admin/rider-registrations/${rowId}`); // Navigate to the dynamic details page
-  };
-
-  const handleDelete = (rowId) => {
-    if (confirm(`Are you sure you want to delete ${rowId}?`)) {
-      alert(`Deleting: ${rowId}`);
-      // Implement actual deletion logic, e.g., update state or call API
-      setFilteredRows((prevRows) => prevRows.filter((row) => row.id !== rowId));
-    }
-  };
-
-  const handleEdit = (rowId) => {
-    alert(`Editing: ${rowId}`);
-    // Implement edit form/modal logic here
-  };
-
-
-  const handleFilterClick = () => {
-    alert("Filter button clicked! (Implement your filter modal/logic here)");
-  };
+// Main App component
+export default function RegistrationTable() {
+  const users = [
+    {
+      id: "#5089",
+      customer: {
+        name: "Jane Cooper",
+        avatar: "https://placehold.co/40x40/FF5733/FFFFFF?text=JC", // Placeholder image
+      },
+      joinDate: "6 April, 2023",
+      status: "Active",
+      // Based on the image, Active users have the 'delete' action icon.
+      // We can derive actionType from status for consistency.
+      // actionType: "delete", // Original: 'delete' for red icon, 'lock' for green icon
+    },
+    {
+      id: "#5089",
+      customer: {
+        name: "Jerome Bell",
+        avatar: "https://placehold.co/40x40/33FF57/FFFFFF?text=JB", // Placeholder image
+      },
+      joinDate: "6 April, 2023",
+      status: "Blocked",
+      // Based on the image, Blocked users have the 'lock' action icon.
+      // actionType: "blocked", // Original
+    },
+    {
+      id: "#5089",
+      customer: {
+        name: "Jenny Wilson",
+        avatar: "https://placehold.co/40x40/5733FF/FFFFFF?text=JW", // Placeholder image
+      },
+      joinDate: "6 April, 2023",
+      status: "Active",
+      // Based on the image, Active users have the 'delete' action icon.
+      // actionType: "active", // Original
+    },
+    {
+      id: "#5089",
+      customer: {
+        name: "Ralph Edwards",
+        avatar: "https://placehold.co/40x40/FF33A1/FFFFFF?text=RE", // Placeholder image
+      },
+      joinDate: "6 April, 2023",
+      status: "Blocked",
+      // Based on the image, Blocked users have the 'lock' action icon.
+      // actionType: "blocked", // Original
+    },
+  ];
 
   return (
-    <div style={{ boxShadow: '0px 4px 14.7px 0px rgba(0, 0, 0, 0.25)' }} className="bg-white p-4 rounded-lg shadow-lg">
-      <div className="flex justify-between items-center mb-4">
-        <h2 className="text-[20px] font-semibold text-black">
-          Rider Registrations
+    <div className=" w-full text-white px-6 py-5 bg-[#2D2D2D] rounded-[20px] shadow-[0px_2px_12px_0px_rgba(44,120,220,0.08)]  flex  font-sans">
+      <div className="w-full  rounded-lg shadow-lg overflow-hidden">
+        <h2 className="text-xl sm:text-2xl font-semibold p-4 sm:p-6 border-b border-gray-700">
+          User List
         </h2>
-
-        {/* Search Input Field and Filter Button */}
-        <div className="flex items-center">
-          <div className="relative">
-            <MagnifyingGlassIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-[#A4A4A4]" />
-            <input
-              type="text"
-              placeholder="Search"
-              className="pl-10 pr-4 py-2 text-[#0f0f0f] rounded-tl-[7.04px] rounded-bl-[7.04px] border-[1px] border-[#0000001A] text-sm focus:outline-none focus:ring-1 focus:ring-blue-500"
-              value={searchTerm}
-              onChange={handleSearchChange}
-            />
-          </div>
-
-          <button
-            onClick={handleFilterClick}
-            className="hover:bg-gray-700 transition-colors bg-[#C12722] p-[5px] rounded-tr-[7.04px] rounded-br-[7.04px]"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="25"
-              viewBox="0 0 24 25"
-              fill="none"
-            >
-              <path d="M11 8.5L20 8.5" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
-              <path d="M4 16.5L14 16.5" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
-              <ellipse cx="7" cy="8.5" rx="3" ry="3" transform="rotate(90 7 8.5)" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
-              <ellipse cx="17" cy="16.5" rx="3" ry="3" transform="rotate(90 17 16.5)" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
-            </svg>
-          </button>
-        </div>
-      </div>
-      
-      <div className="overflow-x-auto">
-        <table className="w-full text-left text-sm">
-          <thead>
-            <tr className="text-white bg-[#C12722] border-b border-gray-700 ">
-              <th className="py-3 px-4 font-bold text-[14px] text-center">Membership ID</th>
-              <th className="py-3 px-4 font-bold text-[14px] text-center">Name</th>
-              <th className="py-3 px-4 font-bold text-[14px] text-center">Email</th>
-              <th className="py-3 px-4 font-bold text-[14px] text-center">Registration Date</th>
-              <th className="py-3 px-4 font-bold text-[14px] text-center">Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredRows.length > 0 ? (
-              filteredRows.map((row) => (
-                <tr key={row.id} className="border-b border-gray-200 text-black hover:bg-gray-50">
-                  <td className="py-3 px-4 text-center">{row.membershipId}</td>
-                  <td className="py-3 px-4 text-center">
-                    <div className="flex items-center justify-center gap-2">
-                      <div className="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center">
-                         {/* This shows the first letter of the name as a fallback avatar */}
-                        <span className="text-sm font-semibold text-gray-600">
-                          {row.name.charAt(0)}
-                        </span>
+        <div className="overflow-x-auto">
+          <table className="min-w-full divide-y divide-gray-700">
+            <thead className="bg-gray-700">
+              <tr>
+                <th
+                  scope="col"
+                  className="px-3 py-3 sm:px-6 text-left text-xs font-medium text-gray-400 uppercase tracking-wider"
+                >
+                  ID
+                </th>
+                <th
+                  scope="col"
+                  className="px-3 py-3 sm:px-6 text-left text-xs font-medium text-gray-400 uppercase tracking-wider"
+                >
+                  <div className="flex items-center">
+                    Customer
+                    {/* Dropdown arrow for customer column */}
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="25"
+                      height="25"
+                      viewBox="0 0 25 25"
+                      fill="none"
+                    >
+                      <path
+                        opacity="0.4"
+                        d="M16.18 13.4399L12.39 8.38989H6.78C5.82 8.38989 5.34 9.54989 6.02 10.2299L11.2 15.4099C12.03 16.2399 13.38 16.2399 14.21 15.4099L16.18 13.4399Z"
+                        fill="#DBDADE"
+                      />
+                      <path
+                        d="M18.62 8.38989H12.39L16.18 13.4399L19.39 10.2299C20.06 9.54989 19.58 8.38989 18.62 8.38989Z"
+                        fill="#DBDADE"
+                      />
+                    </svg>
+                  </div>
+                </th>
+                <th
+                  scope="col"
+                  className="px-3 py-3 sm:px-6 text-left text-xs font-medium text-gray-400 uppercase tracking-wider"
+                >
+                  Join Date
+                </th>
+                <th
+                  scope="col"
+                  className="px-3 py-3 sm:px-6 text-left text-xs font-medium text-gray-400 uppercase tracking-wider"
+                >
+                  Status
+                </th>
+                <th
+                  scope="col"
+                  className="px-3 py-3 sm:px-6 text-left text-xs font-medium text-gray-400 uppercase tracking-wider"
+                >
+                  Action
+                </th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-700">
+              {users.map((user, index) => (
+                <tr key={index} className="">
+                  <td className="px-3 py-3 sm:px-6 whitespace-nowrap text-sm font-medium text-gray-300">
+                    {user.id}
+                  </td>
+                  <td className="px-3 py-3 sm:px-6 whitespace-nowrap">
+                    <div className="flex items-center">
+                      <div className="flex-shrink-0 h-8 w-8 sm:h-10 sm:w-10 rounded-full overflow-hidden">
+                        <AvatarImage
+                          src={user.customer.avatar}
+                          alt={user.customer.name}
+                        />
                       </div>
-                      <span>{row.name}</span>
+
+                      <div className="ml-2 sm:ml-4">
+                        <div className="text-sm font-medium text-gray-200">
+                          {user.customer.name}
+                        </div>
+                      </div>
                     </div>
                   </td>
-                  <td className="py-3 px-4 text-center">{row.email}</td>
-                  <td className="py-3 px-4 text-center">{row.registrationDate}</td>
-                  <td className="py-3 px-4">
-                    <div className="flex items-center justify-center gap-2">
-                      {/* Original Action Icons Restored */}
-                      <Image
-                        className="cursor-pointer"
-                        src="/icon/right.svg" // Assuming this is your edit icon
-                        alt="Edit"
-                        width={26}
-                        height={26}
-                        onClick={() => handleEdit(row.id)}
-                      />
-                      <Image
-                        className="cursor-pointer"
-                        src="/icon/trash.svg"
-                        alt="Delete"
-                        width={26}
-                        height={26}
-                        onClick={() => handleDelete(row.id)}
-                      />
-                      <Image
-                        className="cursor-pointer"
-                        src={eyeIcon}
-                        alt="View"
-                        width={26}
-                        height={26}
-                        onClick={() => handleView(row.id)}
-                      />
+                  <td className="px-3 py-3 sm:px-6 whitespace-nowrap text-sm text-gray-300">
+                    {user.joinDate}
+                  </td>
+                  <td className="px-3 py-3 sm:px-6 whitespace-nowrap">
+                    <span
+                      className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
+                        user.status === "Active"
+                          ? "bg-green-100 text-green-800"
+                          : "bg-red-100 text-red-800"
+                      }`}
+                    >
+                      {user.status}
+                    </span>
+                  </td>
+                  <td className="px-3 py-3 sm:px-6 whitespace-nowrap text-sm font-medium">
+                    <div className="flex items-center space-x-2">
+                      {/* Eye icon for view */}
+                      <svg
+                        className="h-5 w-5 text-orange-400 cursor-pointer"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                        ></path>
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                        ></path>
+                      </svg>
+                      {/* Action icon based on status */}
+                      {user.status === "Active" ? (
+                        // Red delete icon for Active status
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="15"
+                          height="15"
+                          viewBox="0 0 15 15"
+                          fill="none"
+                        >
+                          <g clip-path="url(#clip0_0_736)">
+                            <path
+                              d="M7.6001 0.209961C3.75283 0.209961 0.600098 3.3627 0.600098 7.20996C0.600098 11.0572 3.75283 14.21 7.6001 14.21C11.4474 14.21 14.6001 11.0572 14.6001 7.20996C14.6001 3.3627 11.4474 0.209961 7.6001 0.209961ZM2.26807 7.20996C2.26807 4.27321 4.66335 1.87793 7.6001 1.87793C8.70749 1.87793 9.77395 2.22243 10.6845 2.87048L7.6001 5.95486L3.26067 10.2943C2.61257 9.38376 2.26807 8.31736 2.26807 7.20996ZM7.6001 12.542C6.4927 12.542 5.42624 12.1974 4.51572 11.5494L11.9396 4.12556C12.5876 5.03611 12.9321 6.10251 12.9321 7.20996C12.9321 10.1467 10.5368 12.542 7.6001 12.542Z"
+                              fill="#FF3636"
+                            />
+                            <path
+                              d="M14.6001 7.20996C14.6001 11.0572 11.4474 14.21 7.6001 14.21V12.542C10.5368 12.542 12.9321 10.1467 12.9321 7.20996C12.9321 6.10251 12.5876 5.03611 11.9395 4.12559L7.6001 8.46501V5.95486L10.6845 2.87048C9.77395 2.22243 8.70749 1.87793 7.6001 1.87793V0.209961C11.4474 0.209961 14.6001 3.3627 14.6001 7.20996Z"
+                              fill="#F40000"
+                            />
+                          </g>
+                          <defs>
+                            <clipPath id="clip0_0_736">
+                              <rect
+                                width="14"
+                                height="14"
+                                fill="white"
+                                transform="translate(0.600098 0.209961)"
+                              />
+                            </clipPath>
+                          </defs>
+                        </svg>
+                      ) : (
+                        // Green lock icon for Blocked status
+                        <svg
+                          className="h-5 w-5 text-green-500 cursor-pointer"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                          ></path>
+                        </svg>
+                      )}
                     </div>
                   </td>
                 </tr>
-              ))
-            ) : (
-              <tr>
-                <td colSpan="5" className="text-center py-4 text-gray-400">
-                  No matching registrations found.
-                </td>
-              </tr>
-            )}
-          </tbody>
-        </table>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );
