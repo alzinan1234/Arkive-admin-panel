@@ -78,14 +78,14 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
                 <path
                   d="M1.5 1H19.5"
                   stroke="#494949"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
                 />
                 <path
                   d="M1.5 7H19.5"
                   stroke="#494949"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
                 />
               </svg>
             </button>

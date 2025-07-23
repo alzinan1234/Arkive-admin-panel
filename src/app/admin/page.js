@@ -5,6 +5,7 @@ import { Area, ResponsiveContainer } from "recharts";
 import AlcoholConsumptionTrendChart from "@/components/AlcoholConsumptionTrendChart";
 import EarningSummaryChart from "@/components/EarningSummaryChart";
 import MetricCard from "@/components/MetricCard";
+import RecentSubscriber from "@/components/RecentSubscriber";
 
 const Admin = () => {
   const months = [
@@ -24,38 +25,35 @@ const Admin = () => {
   return (
     <>
       <div className="bg-black w-full min-h-screen">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-4">
+        <div className="">
           {/* Total User Card */}
           <MetricCard
-            title="Total User"
-            value={2500}
-            percentageChange={4}
-            percentageDirection="up"
-            timePeriodData={months}
+           
           />
 
           {/* Total Service Provider Card */}
-          <MetricCard
+          {/* <MetricCard
             title="Total Rider"
             value={200}
             percentageChange={4}
-            percentageDirection="up" // Assuming it's also up, change to 'down' if needed
+            percentageDirection="up" 
             timePeriodData={months}
           />
           <MetricCard
             title="Total Restaurant"
             value={200}
             percentageChange={4}
-            percentageDirection="up" // Assuming it's also up, change to 'down' if needed
+            percentageDirection="up" 
             timePeriodData={months}
-          />
+          /> */}
         </div>
 
         <div className=" p-4">
           {/* Earning Summary Chart */}
-          <div className="w-full">
+          <div className=" w-full flex flex-col md:flex-row gap-4">
             {/* Ensure minimum height for chart visibility */}
-            <EarningSummaryChart />
+            <EarningSummaryChart  />
+            <RecentSubscriber />
           </div>
 
           {/* Alcohol Consumption Trend Line Chart */}
