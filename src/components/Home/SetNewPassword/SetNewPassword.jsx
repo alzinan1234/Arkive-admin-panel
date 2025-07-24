@@ -50,7 +50,7 @@ export default function App() {
       // For demonstration, always succeed if validation passes
       toast.success("Password has been reset successfully! (Simulated)");
       // In a real app, redirect to login page after successful password reset
-      window.location.href = "/login";
+      window.location.href = "/";
     } catch (err) {
       console.error("Set new password error:", err);
       setError("An unexpected error occurred. Please try again.");
