@@ -15,6 +15,7 @@ import {
   Settings,
   Image as ImageIcon,
   BanknoteArrowDown,
+  Users2,
 } from "lucide-react";
 import Image from "next/image";
 import dreckks from "../../public/tika-food.svg";
@@ -23,9 +24,9 @@ import barss from "../../public/icon/bars.png";
 const navItems = [
   { name: "Dashboard", href: "/admin", icon: LayoutDashboard },
   {
-    name: "Rider Registrations",
-    href: "/admin/rider-registrations",
-    icon: FileText,
+    name: "User List",
+    href: "/admin/user-list",
+    icon: Users2 ,
   },
 
   { name: "User Management", href: "/admin/user-management", icon: Users },
@@ -66,7 +67,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
             {/* Updated hover state for white background */}
             <button
               onClick={() => setIsOpen(false)}
-              className="p-1 hover:bg-gray-100 rounded text-[#494949]"
+              className="p-1 hover:bg-gray-600 rounded text-[#494949]"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -77,13 +78,13 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
               >
                 <path
                   d="M1.5 1H19.5"
-                  stroke="#494949"
+                  stroke="white"
                   strokeWidth="1.5"
                   strokeLinecap="round"
                 />
                 <path
                   d="M1.5 7H19.5"
-                  stroke="#494949"
+                  stroke="white"
                   strokeWidth="1.5"
                   strokeLinecap="round"
                 />
