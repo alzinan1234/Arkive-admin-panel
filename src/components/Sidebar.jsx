@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 import {
   LayoutDashboard,
@@ -33,6 +33,15 @@ const navItems = [
 ];
 
 const Sidebar = ({ isOpen, setIsOpen }) => {
+  const router = useRouter();
+
+
+  const handleLogout = () => {
+    // Implement logout functionality here
+    console.log("User logged out");
+    // Redirect to login page or perform any other action
+ router.push("/") // Example redirect
+  }
   const pathname = usePathname();
 
   return (
@@ -121,8 +130,8 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
           </div>
 
           {/* Logout Button */}
-          <div className="border-t border-[#D6D6D6] pt-6 ">
-            <button className="flex ml-9 gap-2 items-center text-[#FF0000] hover:text-red-600">
+          <div className="border-t border-[#D6D6D6] pt-6  ">
+            <button onClick={handleLogout} className="flex ml-9 gap-2 items-center text-[#FF0000] hover:text-red-600">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="20"
