@@ -1,226 +1,216 @@
-// "use client";
+// src/app/admin/user-list/[id]/page.jsx
+"use client";
 
-// import React from "react";
-// import { useRouter } from "next/navigation";
-// // import AvatarImage from "../../../../components/AvatarImage"; // Adjust path as needed
+import React, { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
+import Link from "next/link"; // Link is not used, can be removed if not needed
 
-// export default function UserDetailsPage({ params }) {
-//   const router = useRouter();
-//   const { id } = params; // Get the dynamic ID from the URL
+// Full initial user data (re-declared here for self-contained example, ideally shared or fetched)
+const initialUsersData = [
+    {
+      id: "5089",
+      customer: {
+        name: "Jane Cooper",
+        avatar: "https://images.pexels.com/photos/1250655/pexels-photo-1250655.jpeg",
+      },
+      joinDate: "6 April, 2023",
+      status: "Active",
+      email: "jane.cooper@example.com",
+      phone: "664 333 224",
+    },
+    {
+      id: "5090",
+      customer: {
+        name: "Jerome Bell",
+        avatar: "https://placehold.co/40x40/33FF57/FFFFFF?text=JB",
+      },
+      joinDate: "6 April, 2023",
+      status: "Blocked",
+      email: "jerome.bell@example.com",
+      phone: "123 456 789",
+    },
+    {
+      id: "5091",
+      customer: {
+        name: "Jenny Wilson",
+        avatar: "https://placehold.co/40x40/5733FF/FFFFFF?text=JW",
+      },
+      joinDate: "6 April, 2023",
+      status: "Active",
+      email: "jenny.wilson@example.com",
+      phone: "987 654 321",
+    },
+    {
+      id: "5092",
+      customer: {
+        name: "Ralph Edwards",
+        avatar: "https://placehold.co/40x40/FF33A1/FFFFFF?text=RE",
+      },
+      joinDate: "6 April, 2023",
+      status: "Blocked",
+      email: "ralph.edwards@example.com",
+      phone: "555 123 456",
+    },
+    {
+      id: "5093",
+      customer: {
+        name: "Alice Johnson",
+        avatar: "https://placehold.co/40x40/33A1FF/FFFFFF?text=AJ",
+      },
+      joinDate: "7 April, 2023",
+      status: "Active",
+      email: "alice.j@example.com",
+      phone: "111 222 333",
+    },
+    {
+      id: "5094",
+      customer: {
+        name: "Bob Williams",
+        avatar: "https://placehold.co/40x40/A133FF/FFFFFF?text=BW",
+      },
+      joinDate: "7 April, 2023",
+      status: "Blocked",
+      email: "bob.w@example.com",
+      phone: "444 555 666",
+    },
+    {
+      id: "5095",
+      customer: {
+        name: "Charlie Brown",
+        avatar: "https://placehold.co/40x40/FFC133/FFFFFF?text=CB",
+      },
+      joinDate: "8 April, 2023",
+      status: "Active",
+      email: "charlie.b@example.com",
+      phone: "777 888 999",
+    },
+    {
+      id: "5096",
+      customer: {
+        name: "Diana Miller",
+        avatar: "https://placehold.co/40x40/33FFC1/FFFFFF?text=DM",
+      },
+      joinDate: "8 April, 2023",
+      status: "Blocked",
+      email: "diana.m@example.com",
+      phone: "222 333 444",
+    },
+    {
+      id: "5097",
+      customer: {
+        name: "Eve Davis",
+        avatar: "https://placehold.co/40x40/C133FF/FFFFFF?text=ED",
+      },
+      joinDate: "9 April, 2023",
+      status: "Active",
+      email: "eve.d@example.com",
+      phone: "999 000 111",
+    },
+    {
+      id: "5098",
+      customer: {
+        name: "Frank White",
+        avatar: "https://placehold.co/40x40/FF3366/FFFFFF?text=FW",
+      },
+      joinDate: "9 April, 2023",
+      status: "Blocked",
+      email: "frank.w@example.com",
+      phone: "333 444 555",
+    },
+];
 
-//   // Dummy data (replace with actual data fetching from an API or database)
-//   const allUsers = [
-//     {
-//       id: "#5089",
-//       customer: {
-//         name: "Jane Cooper",
-//         avatar: "https://placehold.co/40x40/FF5733/FFFFFF?text=JC",
-//         email: "janecooper@example.com",
-//         phone: "664-333-224",
-//       },
-//       joinDate: "6 April, 2023",
-//       status: "Active",
-//     },
-//     {
-//       id: "#5090",
-//       customer: {
-//         name: "Jerome Bell",
-//         avatar: "https://placehold.co/40x40/33FF57/FFFFFF?text=JB",
-//         email: "jeromebell@example.com",
-//         phone: "123-456-7890",
-//       },
-//       joinDate: "6 April, 2023",
-//       status: "Blocked",
-//     },
-//     {
-//       id: "#5091",
-//       customer: {
-//         name: "Jenny Wilson",
-//         avatar: "https://placehold.co/40x40/5733FF/FFFFFF?text=JW",
-//         email: "jennywilson@example.com",
-//         phone: "987-654-3210",
-//       },
-//       joinDate: "6 April, 2023",
-//       status: "Active",
-//     },
-//     {
-//       id: "#5092",
-//       customer: {
-//         name: "Ralph Edwards",
-//         avatar: "https://placehold.co/40x40/FF33A1/FFFFFF?text=RE",
-//         email: "ralphedwards@example.com",
-//         phone: "555-123-4567",
-//       },
-//       joinDate: "6 April, 2023",
-//       status: "Blocked",
-//     },
-//     {
-//       id: "#5093",
-//       customer: {
-//         name: "Alice Johnson",
-//         avatar: "https://placehold.co/40x40/33A1FF/FFFFFF?text=AJ",
-//         email: "alicej@example.com",
-//         phone: "111-222-3333",
-//       },
-//       joinDate: "7 April, 2023",
-//       status: "Active",
-//     },
-//     {
-//       id: "#5094",
-//       customer: {
-//         name: "Bob Williams",
-//         avatar: "https://placehold.co/40x40/A133FF/FFFFFF?text=BW",
-//         email: "bobw@example.com",
-//         phone: "444-555-6666",
-//       },
-//       joinDate: "7 April, 2023",
-//       status: "Blocked",
-//     },
-//     {
-//       id: "#5095",
-//       customer: {
-//         name: "Charlie Brown",
-//         avatar: "https://placehold.co/40x40/FFC133/FFFFFF?text=CB",
-//         email: "charlieb@example.com",
-//         phone: "777-888-9999",
-//       },
-//       joinDate: "8 April, 2023",
-//       status: "Active",
-//     },
-//     {
-//       id: "#5096",
-//       customer: {
-//         name: "Diana Miller",
-//         avatar: "https://placehold.co/40x40/33FFC1/FFFFFF?text=DM",
-//         email: "dianam@example.com",
-//         phone: "000-111-2222",
-//       },
-//       joinDate: "8 April, 2023",
-//       status: "Blocked",
-//     },
-//     {
-//       id: "#5097",
-//       customer: {
-//         name: "Eve Davis",
-//         avatar: "https://placehold.co/40x40/C133FF/FFFFFF?text=ED",
-//         email: "eved@example.com",
-//         phone: "333-444-5555",
-//       },
-//       joinDate: "9 April, 2023",
-//       status: "Active",
-//     },
-//     {
-//       id: "#5098",
-//       customer: {
-//         name: "Frank White",
-//         avatar: "https://placehold.co/40x40/FF3366/FFFFFF?text=FW",
-//         email: "frankw@example.com",
-//         phone: "666-777-8888",
-//       },
-//       joinDate: "9 April, 2023",
-//       status: "Blocked",
-//     },
-//   ];
 
-//   // Find the user based on the ID from the URL
-//   const user = allUsers.find((u) => u.id === id);
+export default function UserDetailsPage({ params }) {
+  const router = useRouter();
+  // Unwrap params if it's a Promise (Next.js 14+)
+  const unwrappedParams = typeof params.then === "function" ? React.use(params) : params;
+  const userId = unwrappedParams.id;
+  const [mounted, setMounted] = useState(false);
 
-//   if (!user) {
-//     return (
-//       <div className="min-h-screen bg-[#2D2D2D] text-white flex items-center justify-center">
-//         <p className="text-xl">User not found.</p>
-//       </div>
-//     );
-//   }
+  // Find the user from the initialUsersData array
+  const user = initialUsersData.find(u => u.id === userId);
 
-//   return (
-//     <div className="min-h-screen bg-[#2D2D2D] text-white p-6 sm:p-8 font-sans">
-//       {/* Back Button */}
-//       <div className="flex items-center mb-6">
-//         <button onClick={() => router.back()} className="text-gray-400 hover:text-white flex items-center">
-//           <svg
-//             xmlns="http://www.w3.org/2000/svg"
-//             className="h-6 w-6 mr-2"
-//             fill="none"
-//             viewBox="0 0 24 24"
-//             stroke="currentColor"
-//           >
-//             <path
-//               strokeLinecap="round"
-//               strokeLinejoin="round"
-//               strokeWidth={2}
-//               d="M10 19l-7-7m0 0l7-7m-7 7h18"
-//             />
-//           </svg>
-//           <span className="text-lg">Back to User List</span>
-//         </button>
-//       </div>
+  useEffect(() => {
+    setMounted(true);
+    // document.body.style.overflow = "hidden"; // This might cause issues if other modals are open
+    // Consider using a more targeted approach for overflow, or allow scrolling in the background
+    return () => {
+      // document.body.style.overflow = "auto";
+    };
+  }, []);
 
-//       {/* User Details Card */}
-//       <div className="bg-[#2D2D2D] rounded-lg shadow-lg p-6 w-full max-w-md mx-auto border border-gray-700">
-//         <div className="flex flex-col items-center mb-6">
-//           <div className="h-24 w-24 rounded-full overflow-hidden border-2 border-gray-600 mb-4">
-//             {/* <AvatarImage src={user.customer.avatar} alt={user.customer.name} /> */}
-//           </div>
-//           <h4 className="text-2xl font-bold mb-1">{user.customer.name}</h4>
-//           <p className="text-gray-400 text-sm">Join Date: {user.joinDate}</p>
-//         </div>
+  if (!user || !mounted) {
+    // You might want a better loading/error state here
+    return (
+      <div className="fixed inset-0 z-50 backdrop-blur-sm flex items-center justify-center text-white">
+        Loading user details...
+      </div>
+    );
+  }
 
-//         <div className="space-y-4 mb-6">
-//           <div>
-//             <label className="block text-gray-400 text-sm font-medium mb-1">
-//               Email
-//             </label>
-//             <input
-//               type="text"
-//               value={user.customer.email || "N/A"}
-//               readOnly
-//               className="w-full p-2 rounded-md bg-gray-700 text-gray-200 border border-gray-600 focus:outline-none"
-//             />
-//           </div>
-//           <div>
-//             <label className="block text-gray-400 text-sm font-medium mb-1">
-//               Phone
-//             </label>
-//             <input
-//               type="text"
-//               value={user.customer.phone || "N/A"}
-//               readOnly
-//               className="w-full p-2 rounded-md bg-gray-700 text-gray-200 border border-gray-600 focus:outline-none"
-//             />
-//           </div>
-//           <div>
-//             <label className="block text-gray-400 text-sm font-medium mb-1">
-//               Account Status
-//             </label>
-//             <input
-//               type="text"
-//               value={user.status}
-//               readOnly
-//               className={`w-full p-2 rounded-md border focus:outline-none ${
-//                 user.status === "Active"
-//                   ? "bg-green-700 text-white border-green-600"
-//                   : "bg-red-700 text-white border-red-600"
-//               }`}
-//             />
-//           </div>
-//         </div>
+  return (
+    <AnimatePresence>
+      <motion.div
+        className="fixed inset-0 z-50 backdrop-blur-sm flex items-center justify-center p-4" // Added padding for smaller screens
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+      >
+        <motion.div
+          className="bg-[#3D3D3D] text-white p-6 rounded-lg shadow-lg w-full max-w-md relative border border-gray-600" // Added border
+          initial={{ scale: 0.9, opacity: 0, y: 50 }}
+          animate={{ scale: 1, opacity: 1, y: 0 }}
+          exit={{ scale: 0.9, opacity: 0, y: 50 }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
+        >
+          <button
+            className="absolute top-2 right-2 text-white text-xl font-bold hover:text-red-500"
+            onClick={() => router.back()}
+          >
+            &times;
+          </button>
+          <div className="w-full h-48 rounded-lg overflow-hidden mb-4 bg-gray-700 flex items-center justify-center"> {/* Added bg for placeholder */}
+            {user.customer.avatar ? (
+              <Image
+                src={user.customer.avatar}
+                alt={user.customer.name}
+                width={400}
+                height={200}
+                className="w-full h-full object-cover"
+                onError={(e) => { e.target.src = "https://placehold.co/400x200/CCCCCC/000000?text=Image+Not+Found" }} // Fallback for image
+              />
+            ) : (
+                <span className="text-gray-400">No Image</span>
+            )}
+          </div>
+          <h2 className="text-2xl font-bold mb-2">{user.customer.name}</h2>
+          <p className="text-gray-300 mb-1">Email: {user.email}</p> {/* Added labels */}
+          <p className="text-gray-300 mb-1">Phone: {user.phone}</p> {/* Added labels */}
+          <p className="text-sm text-gray-400 mt-2">
+            Account status: <span className={`font-bold ${user.status === "Active" ? "text-green-400" : "text-red-400"}`}>{user.status}</span>
+          </p>
+          <p className="text-sm text-gray-400 mt-1">
+            Joined: <span className="font-bold">{user.joinDate}</span>
+          </p>
+          <p className="text-sm text-gray-400 mt-1">
+            User ID: <span className="font-bold">#{user.id}</span>
+          </p>
 
-//         {/* Action buttons (if needed on this page, otherwise remove) */}
-//         <div className="flex justify-end space-x-4">
-//           {/* Example: A button to toggle block/unblock status if this page should allow it */}
-//           {/* <button
-//             onClick={() => alert('Implement block/unblock logic here for ' + user.id)}
-//             className={`px-6 py-2 rounded-lg text-white transition-colors ${
-//               user.status === "Active"
-//                 ? "bg-red-600 hover:bg-red-700"
-//                 : "bg-green-600 hover:bg-green-700"
-//             }`}
-//           >
-//             {user.status === "Active" ? "Block Account" : "Unblock Account"}
-//           </button> */}
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
+          <div className="mt-6 flex justify-end gap-2">
+            <button
+              onClick={() => router.back()}
+              className="px-4 py-2 rounded bg-gray-600 hover:bg-gray-500 transition-colors duration-200"
+            >
+              Close
+            </button>
+            <button className="px-4 py-2 rounded bg-red-600 hover:bg-red-700 transition-colors duration-200">
+              {user.status === "Active" ? "Block Account" : "Activate Account"}
+            </button>
+          </div>
+        </motion.div>
+      </motion.div>
+    </AnimatePresence>
+  );
+}

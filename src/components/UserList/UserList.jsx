@@ -1,10 +1,13 @@
-"use client";
+'use client';
 
 import React, { useState } from "react";
+import { useRouter } from 'next/navigation';
+import { motion, AnimatePresence } from 'framer-motion';
+import toast, { Toaster } from 'react-hot-toast'; // Import toast and Toaster
 
 // AvatarImage client component for fallback avatar
 function AvatarImage({ src, alt }) {
-  const [imgSrc, setImgSrc] = React.useState(src);
+  const [imgSrc, setImgSrc] = useState(src);
   return (
     <img
       className="h-full w-full object-cover"
@@ -19,97 +22,119 @@ function AvatarImage({ src, alt }) {
 
 // Main App component
 export default function UserList() {
+  const router = useRouter();
+
   // Initial user data
   const initialUsers = [
     {
-      id: "#5089",
+      id: "5089",
       customer: {
         name: "Jane Cooper",
-        avatar: "https://placehold.co/40x40/FF5733/FFFFFF?text=JC", // Placeholder image
+        avatar: "https://images.pexels.com/photos/1250655/pexels-photo-1250655.jpeg",
       },
       joinDate: "6 April, 2023",
       status: "Active",
+      email: "jane.cooper@example.com",
+      phone: "664 333 224",
     },
     {
-      id: "#5090", // Changed ID
+      id: "5090",
       customer: {
         name: "Jerome Bell",
-        avatar: "https://placehold.co/40x40/33FF57/FFFFFF?text=JB", // Placeholder image
+        avatar: "https://placehold.co/40x40/33FF57/FFFFFF?text=JB",
       },
       joinDate: "6 April, 2023",
       status: "Blocked",
+      email: "jerome.bell@example.com",
+      phone: "123 456 789",
     },
     {
-      id: "#5091", // Changed ID
+      id: "5091",
       customer: {
         name: "Jenny Wilson",
-        avatar: "https://placehold.co/40x40/5733FF/FFFFFF?text=JW", // Placeholder image
+        avatar: "https://placehold.co/40x40/5733FF/FFFFFF?text=JW",
       },
       joinDate: "6 April, 2023",
       status: "Active",
+      email: "jenny.wilson@example.com",
+      phone: "987 654 321",
     },
     {
-      id: "#5092", // Changed ID
+      id: "5092",
       customer: {
         name: "Ralph Edwards",
-        avatar: "https://placehold.co/40x40/FF33A1/FFFFFF?text=RE", // Placeholder image
+        avatar: "https://placehold.co/40x40/FF33A1/FFFFFF?text=RE",
       },
       joinDate: "6 April, 2023",
       status: "Blocked",
+      email: "ralph.edwards@example.com",
+      phone: "555 123 456",
     },
     {
-      id: "#5093", // New entry
+      id: "5093",
       customer: {
         name: "Alice Johnson",
         avatar: "https://placehold.co/40x40/33A1FF/FFFFFF?text=AJ",
       },
       joinDate: "7 April, 2023",
       status: "Active",
+      email: "alice.j@example.com",
+      phone: "111 222 333",
     },
     {
-      id: "#5094", // New entry
+      id: "5094",
       customer: {
         name: "Bob Williams",
         avatar: "https://placehold.co/40x40/A133FF/FFFFFF?text=BW",
       },
       joinDate: "7 April, 2023",
       status: "Blocked",
+      email: "bob.w@example.com",
+      phone: "444 555 666",
     },
     {
-      id: "#5095", // New entry
+      id: "5095",
       customer: {
         name: "Charlie Brown",
         avatar: "https://placehold.co/40x40/FFC133/FFFFFF?text=CB",
       },
       joinDate: "8 April, 2023",
       status: "Active",
+      email: "charlie.b@example.com",
+      phone: "777 888 999",
     },
     {
-      id: "#5096", // New entry
+      id: "5096",
       customer: {
         name: "Diana Miller",
         avatar: "https://placehold.co/40x40/33FFC1/FFFFFF?text=DM",
       },
       joinDate: "8 April, 2023",
       status: "Blocked",
+      email: "diana.m@example.com",
+      phone: "222 333 444",
     },
     {
-      id: "#5097", // New entry
+      id: "5097",
       customer: {
         name: "Eve Davis",
         avatar: "https://placehold.co/40x40/C133FF/FFFFFF?text=ED",
       },
       joinDate: "9 April, 2023",
       status: "Active",
+      email: "eve.d@example.com",
+      phone: "999 000 111",
     },
     {
-      id: "#5098", // New entry
+      id: "5098",
       customer: {
         name: "Frank White",
         avatar: "https://placehold.co/40x40/FF3366/FFFFFF?text=FW",
       },
       joinDate: "9 April, 2023",
       status: "Blocked",
+      email: "frank.w@example.com",
+      phone: "333 444 555",
     },
   ];
 
@@ -120,26 +145,25 @@ export default function UserList() {
   const [dateRange, setDateRange] = useState({ from: "", to: "" });
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
-  const [showModal, setShowModal] = useState(false);
-  const [modalUser, setModalUser] = useState(null);
+
   const [showDateFilter, setShowDateFilter] = useState(false);
+
+  // State for the confirmation modal (for unblock)
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  const [userToUnblock, setUserToUnblock] = useState(null);
 
   // Helper: parse date string to Date object
   function parseDate(str) {
-    // Format: "6 April, 2023"
     const [day, monthStr, year] = str.replace(",", "").split(" ");
     return new Date(`${year}-${("0" + (new Date(`${monthStr} 1`).getMonth() + 1)).slice(-2)}-${("0" + day).slice(-2)}`);
   }
 
   // Filtered users
-  let filtered = initialUsers.filter((u) => {
-    // Search by name or ID
+  let filtered = users.filter((u) => {
     const searchMatch =
       u.customer.name.toLowerCase().includes(search.toLowerCase()) ||
       u.id.toLowerCase().includes(search.toLowerCase());
-    // Status filter
     const statusMatch = status === "All" || u.status === status;
-    // Date range filter only if showDateFilter is true
     let dateMatch = true;
     if (showDateFilter) {
       if (dateRange.from) {
@@ -177,19 +201,86 @@ export default function UserList() {
   const handlePage = (p) => {
     if (p >= 1 && p <= totalPages) setPage(p);
   };
-  
-  const handleDelete = (user) => {
-    setUsers((prev) => prev.filter((u) => u.id !== user.id));
+
+  const handleView = (user) => {
+    router.push(`/admin/user-list/${user.id}`);
+    toast.success(`Navigating to details for ${user.customer.name}`);
   };
+
+  const handleDelete = (user) => {
+    toast.custom((t) => (
+      <div
+        className={`${t.visible ? 'animate-enter' : 'animate-leave'}
+          max-w-md w-full bg-[#2D2D2D] shadow-lg rounded-lg pointer-events-auto flex ring-1 ring-black ring-opacity-5`}
+      >
+        <div className="flex-1 w-0 p-4">
+          <div className="flex items-start">
+            <div className="flex-shrink-0 pt-0.5">
+              <AvatarImage src={user.customer.avatar} alt={user.customer.name} />
+            </div>
+            <div className="ml-3 flex-1">
+              <p className="text-sm font-medium text-white">
+                Confirm Deletion
+              </p>
+              <p className="mt-1 text-sm text-gray-300">
+                Are you sure you want to delete {user.customer.name}? This action cannot be undone.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className="flex border-l border-gray-700">
+          <button
+            onClick={() => {
+              setUsers((prev) => prev.filter((u) => u.id !== user.id));
+              toast.dismiss(t.id);
+              toast.success(`${user.customer.name} has been deleted!`);
+            }}
+            className="w-full border border-transparent rounded-none rounded-r-lg p-4 flex items-center justify-center text-sm font-medium text-red-600 hover:text-red-700 focus:outline-none focus:ring-2 focus:ring-red-500"
+          >
+            Delete
+          </button>
+          <button
+            onClick={() => toast.dismiss(t.id)}
+            className="w-full border border-transparent rounded-none rounded-r-lg p-4 flex items-center justify-center text-sm font-medium text-gray-400 hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500"
+          >
+            Cancel
+          </button>
+        </div>
+      </div>
+    ), { duration: Infinity });
+  };
+
   const handleBlockUnblock = (user) => {
+    const newStatus = user.status === "Active" ? "Blocked" : "Active";
     setUsers((prev) =>
       prev.map((u) =>
         u.id === user.id
-          ? { ...u, status: u.status === "Active" ? "Blocked" : "Active" }
+          ? { ...u, status: newStatus }
           : u
       )
     );
+    toast.success(`${user.customer.name} has been ${newStatus.toLowerCase()}!`);
+    setShowConfirmation(false); // Close modal after action, if it was open
+    setUserToUnblock(null);
   };
+
+  const handleBlockUnblockClick = (user) => {
+    // Only show the original confirmation modal if trying to unblock
+    if (user.status === "Blocked") {
+      setUserToUnblock(user);
+      setShowConfirmation(true);
+    } else {
+      // If blocking, proceed directly and use hot-toast for notification
+      handleBlockUnblock(user);
+    }
+  };
+
+  const handleCancelUnblock = () => {
+    setShowConfirmation(false);
+    setUserToUnblock(null);
+    toast('Unblock cancelled.', { icon: '👋' });
+  };
+
 
   return (
     <div className="w-full text-white px-6 py-5 bg-[#2D2D2D] rounded-[20px] shadow-[0px_2px_12px_0px_rgba(44,120,220,0.08)] font-sans">
@@ -202,7 +293,7 @@ export default function UserList() {
             <input
               type="text"
               placeholder="Search..."
-              className="w-full pl-5 pr-4 py-2 rounded-lg border border-[#E9E7FD] text-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full pl-5 pr-4 py-2 rounded-lg border border-[#E9E7FD] text-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 "
               value={search}
               onChange={handleSearch}
             />
@@ -224,7 +315,7 @@ export default function UserList() {
           {/* Status filter */}
           <div className="relative border border-[#E9E7FD] rounded-lg ml-2">
             <select
-              className="appearance-none text-gray-300 py-2 pl-3 pr-8 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="appearance-none text-gray-300 py-2 pl-3 pr-8 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 "
               value={status}
               onChange={handleStatus}
             >
@@ -245,7 +336,7 @@ export default function UserList() {
         </div>
         {/* Filter by date range button */}
         <button
-          className="border border-[#E9E7FD] text-gray-300 py-2 px-4 rounded-lg  focus:outline-none focus:ring-2 focus:ring-blue-500 flex items-center cursor-pointer"
+          className="border border-[#E9E7FD] text-gray-300 py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 flex items-center cursor-pointer "
           onClick={() => setShowDateFilter((prev) => !prev)}
         >
           <svg
@@ -275,7 +366,7 @@ export default function UserList() {
             name="from"
             value={dateRange.from}
             onChange={handleDateChange}
-            className="border border-[#E9E7FD] text-gray-300 py-2 px-2 rounded-lg bg-transparent focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="border border-[#E9E7FD] text-gray-300 py-2 px-2 rounded-lg bg-[#4A4A4A] focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
           <span className="text-gray-400">to</span>
           <input
@@ -283,7 +374,7 @@ export default function UserList() {
             name="to"
             value={dateRange.to}
             onChange={handleDateChange}
-            className="border border-[#E9E7FD] text-gray-300 py-2 px-2 rounded-lg bg-transparent focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="border border-[#E9E7FD] text-gray-300 py-2 px-2 rounded-lg bg-[#4A4A4A] focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
       )}
@@ -314,7 +405,7 @@ export default function UserList() {
             ) : (
               paginated.map((user, index) => (
                 <tr key={user.id}>
-                  <td className="px-3 py-3 sm:px-6 whitespace-nowrap text-sm font-medium text-gray-300">{user.id}</td>
+                  <td className="px-3 py-3 sm:px-6 whitespace-nowrap text-sm font-medium text-gray-300">#{user.id}</td>
                   <td className="px-3 py-3 sm:px-6 whitespace-nowrap">
                     <div className="flex items-center">
                       <div className="flex-shrink-0 h-8 w-8 sm:h-10 sm:w-10 rounded-full overflow-hidden">
@@ -340,11 +431,10 @@ export default function UserList() {
                       </button>
                       {/* Action icon based on status */}
                       {user.status === "Active" ? (
-                        <button onClick={() => handleBlockUnblock(user)} title="Block user">
+                        <button onClick={() => handleBlockUnblockClick(user)} title="Block user">
                           <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" fill="none" className="cursor-pointer">
                             <g clipPath="url(#clip0_0_736)">
                               <path d="M7.6001 0.209961C3.75283 0.209961 0.600098 3.3627 0.600098 7.20996C0.600098 11.0572 3.75283 14.21 7.6001 14.21C11.4474 14.21 14.6001 11.0572 14.6001 7.20996C14.6001 3.3627 11.4474 0.209961 7.6001 0.209961ZM2.26807 7.20996C2.26807 4.27321 4.66335 1.87793 7.6001 1.87793C8.70749 1.87793 9.77395 2.22243 10.6845 2.87048L7.6001 5.95486L3.26067 10.2943C2.61257 9.38376 2.26807 8.31736 2.26807 7.20996ZM7.6001 12.542C6.4927 12.542 5.42624 12.1974 4.51572 11.5494L11.9396 4.12556C12.5876 5.03611 12.9321 6.10251 12.9321 7.20996C12.9321 10.1467 10.5368 12.542 7.6001 12.542Z" fill="#FF3636" />
-                              <path d="M14.6001 7.20996C14.6001 11.0572 11.4474 14.21 7.6001 14.21V12.542C10.5368 12.542 12.9321 10.1467 12.9321 7.20996C12.9321 6.10251 12.5876 5.03611 11.9395 4.12559L7.6001 8.46501V5.95486L10.6845 2.87048C9.77395 2.22243 8.70749 1.87793 7.6001 1.87793V0.209961C11.4474 0.209961 14.6001 3.3627 14.6001 7.20996Z" fill="#F40000" />
                             </g>
                             <defs>
                               <clipPath id="clip0_0_736">
@@ -354,7 +444,7 @@ export default function UserList() {
                           </svg>
                         </button>
                       ) : (
-                        <button onClick={() => handleBlockUnblock(user)} title="Unblock user">
+                        <button onClick={() => handleBlockUnblockClick(user)} title="Unblock user">
                           <svg className="h-5 w-5 text-green-500 cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
                           </svg>
@@ -380,7 +470,7 @@ export default function UserList() {
         {/* Page size dropdown */}
         <div className="relative inline-block text-left">
           <select
-            className="appearance-none text-gray-300 border border-[#E9E7FD] py-2 pl-3 pr-8 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="appearance-none text-gray-300 border border-[#E9E7FD] py-2 pl-3 pr-8 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-[#4A4A4A]"
             value={pageSize}
             onChange={handlePageSize}
           >
@@ -420,7 +510,44 @@ export default function UserList() {
         </div>
       </div>
 
-      
+      {/* Confirmation Modal (for Unblock) */}
+      <AnimatePresence>
+        {showConfirmation && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70"
+          >
+            <motion.div
+              initial={{ scale: 0.9, y: 50 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.9, y: 50 }}
+              className="bg-[#2D2D2D] p-8 rounded-lg shadow-lg max-w-sm w-full text-center"
+            >
+              <h3 className="text-xl font-semibold mb-4 text-white">Are you sure !</h3>
+              {userToUnblock && (
+                <p className="text-gray-300 mb-6">You want to Unblock {userToUnblock.customer.name}?</p>
+              )}
+              <div className="flex justify-center space-x-4">
+                <button
+                  onClick={handleCancelUnblock}
+                  className="px-6 py-2 rounded-lg text-gray-300 border border-[#E9E7FD] bg-[#4A4A4A] hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={() => handleBlockUnblock(userToUnblock)}
+                  className="px-6 py-2 rounded-lg bg-[#4CAF50] text-white hover:bg-[#45A049] focus:outline-none focus:ring-2 focus:ring-green-500"
+                >
+                  Confirm
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+      <Toaster /> {/* Add Toaster component here */}
     </div>
   );
 }

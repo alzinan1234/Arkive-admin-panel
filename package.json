@@ -19,7 +19,7 @@
     "@tabler/icons-react": "^3.34.0",
     "chart.js": "^4.4.9",
     "classnames": "^2.5.1",
-    "framer-motion": "^12.15.0",
+    "framer-motion": "^12.23.7",
     "jodit": "^4.6.2",
     "jodit-react": "^5.2.19",
     "lucide-react": "^0.511.0",
