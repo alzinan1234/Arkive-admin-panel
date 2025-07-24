@@ -1,57 +1,74 @@
-'use client';
+"use client";
 
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo } from "react";
 import {
   ArrowLeftIcon,
-  MagnifyingGlassIcon,
-  AdjustmentsHorizontalIcon,
-  EyeIcon, // For view
+  // MagnifyingGlassIcon, // Removed as search bar is removed
+  // AdjustmentsHorizontalIcon, // Not used, but kept from original imports
+  EyeIcon, // For view/mark as unread
   TrashIcon, // For delete
-  CheckCircleIcon, // For mark as read/unread
-  EnvelopeIcon // Alternative for unread
-} from '@heroicons/react/24/outline'; // Outline for action icons
+  CheckCircleIcon, // For mark as read
+  // EnvelopeIcon // Alternative for unread, not currently used
+} from "@heroicons/react/24/outline";
 
-import { notifications as initialNotifications } from '../../components/lib/notificationData'; // Import mock data
-import Image from 'next/image';
+import { notifications as initialNotifications } from "../../components/lib/notificationData"; // Import mock data
+// import Image from 'next/image'; // Not used, but kept from original imports
 
 // NotificationPage now accepts an onBackClick prop
 const NotificationPage = ({ onBackClick }) => {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [allNotifications, setAllNotifications] = useState(initialNotifications); // Use state to manage notifications for deletion/read status
+  // const [searchTerm, setSearchTerm] = useState(''); // Removed searchTerm state
+  // Use state to manage notifications for deletion/read status
+  const [allNotifications, setAllNotifications] =
+    useState(initialNotifications);
 
   const now = useMemo(() => new Date(), []); // Memoize current time for grouping calculations
 
   const getRelativeTime = (timestamp) => {
     const notificationDate = new Date(timestamp);
-    const diffMinutes = Math.round((now.getTime() - notificationDate.getTime()) / (1000 * 60));
+    const diffMinutes = Math.round(
+      (now.getTime() - notificationDate.getTime()) / (1000 * 60)
+    );
     const diffHours = Math.round(diffMinutes / 60);
 
     if (diffMinutes < 60) {
       return `${diffMinutes} min ago`;
     } else if (diffHours < 24) {
-      return `${diffHours} hour${diffHours > 1 ? 's' : ''} ago`;
+      return `${diffHours} hour${diffHours > 1 ? "s" : ""} ago`;
     } else {
       // For simplicity, just return a formatted date for older items.
       // In a real app, you might differentiate days more clearly.
-      return notificationDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+      return notificationDate.toLocaleDateString("en-US", {
+        month: "short",
+        day: "numeric",
+        year: "numeric",
+      });
     }
   };
 
-  // Group and filter notifications
+  // Group notifications - removed filtering by searchTerm
   const groupedNotifications = useMemo(() => {
-    const filtered = allNotifications.filter(notif =>
-      notif.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      notif.description.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+    // const filtered = allNotifications.filter(notif => // Removed filtering
+    //   notif.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    //   notif.description.toLowerCase().includes(searchTerm.toLowerCase())
+    // );
+    const filtered = allNotifications; // Use all notifications directly as search is removed
 
     const today = [];
     const yesterday = [];
     const older = [];
 
-    const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-    const startOfYesterday = new Date(now.getFullYear(), now.getMonth(), now.getDate() - 1);
+    const startOfToday = new Date(
+      now.getFullYear(),
+      now.getMonth(),
+      now.getDate()
+    );
+    const startOfYesterday = new Date(
+      now.getFullYear(),
+      now.getMonth(),
+      now.getDate() - 1
+    );
 
-    filtered.forEach(notif => {
+    filtered.forEach((notif) => {
       const notifDate = new Date(notif.timestamp);
       if (notifDate >= startOfToday) {
         today.push(notif);
@@ -63,42 +80,58 @@ const NotificationPage = ({ onBackClick }) => {
     });
 
     return { today, yesterday, older };
-  }, [allNotifications, searchTerm, now]);
+  }, [allNotifications, now]); // Removed searchTerm from dependencies
 
   const handleDeleteNotification = (id) => {
-    setAllNotifications(prev => prev.filter(notif => notif.id !== id));
+    setAllNotifications((prev) => prev.filter((notif) => notif.id !== id));
   };
 
   const handleToggleReadStatus = (id) => {
-    setAllNotifications(prev =>
-      prev.map(notif =>
+    setAllNotifications((prev) =>
+      prev.map((notif) =>
         notif.id === id ? { ...notif, isRead: !notif.isRead } : notif
       )
     );
   };
 
   const NotificationItem = ({ notification }) => {
+    // Adjust text color based on read status for dark theme
     const statusClasses = notification.isRead
-      ? 'text-gray-500' // Read notifications can be slightly faded to a dark gray
-      : 'text-black'; // Unread notifications stand out with black text
+      ? "text-gray-400" // Read notifications slightly faded
+      : "text-white"; // Unread notifications stand out
 
     return (
-      <div className='p-5'>
-        <div className={`flex items-center justify-between ${notification.isRead ? '' : ''} last:border-b-0 transition-colors duration-200`}>
+      <div className="p-5">
+        <div
+          className={`flex items-center justify-between ${
+            notification.isRead ? "" : ""
+          } last:border-b-0 transition-colors duration-200`}
+        >
           <div className="flex-grow">
-            <p className={`text-base font-semibold ${statusClasses}`}>{notification.title}</p>
-            <p className={`text-sm ${statusClasses}`}>{notification.description}</p>
+            <p className={`text-base font-semibold ${statusClasses}`}>
+              {notification.title}
+            </p>
+            <p className={`text-sm ${statusClasses}`}>
+              {notification.description}
+            </p>
           </div>
           <div className="flex items-center space-x-4 ml-4">
-            <span className="text-xs text-gray-500 whitespace-nowrap"> {/* Changed to gray-500 */}
+            <span className="text-xs text-gray-400 whitespace-nowrap">
+              {" "}
+              {/* Adjusted to gray-400 for dark theme */}
               {getRelativeTime(notification.timestamp)}
             </span>
             <div className="flex space-x-2">
               {/* Mark as Read/Unread Icon */}
               <button
                 onClick={() => handleToggleReadStatus(notification.id)}
-                className={`${notification.isRead ? 'text-blue-600' : 'text-purple-700'} hover:opacity-75 p-1 rounded-full transition-opacity duration-200`} // Adjusted colors for better contrast on white background
-                aria-label={notification.isRead ? 'Mark as unread' : 'Mark as read'}
+                // Adjusted colors for better contrast on dark background
+                className={`${
+                  notification.isRead ? "text-blue-400" : "text-purple-400"
+                } hover:opacity-75 p-1 rounded-full transition-opacity duration-200`}
+                aria-label={
+                  notification.isRead ? "Mark as unread" : "Mark as read"
+                }
               >
                 {notification.isRead ? (
                   <CheckCircleIcon className="h-5 w-5" />
@@ -109,7 +142,8 @@ const NotificationPage = ({ onBackClick }) => {
               {/* Delete Icon */}
               <button
                 onClick={() => handleDeleteNotification(notification.id)}
-                className="text-red-600 hover:text-red-400 p-1 rounded-full transition-colors duration-200" // Adjusted for better contrast
+                // Adjusted for better contrast on dark background
+                className="text-red-400 hover:text-red-300 p-1 rounded-full transition-colors duration-200"
                 aria-label="Delete notification"
               >
                 <TrashIcon className="h-5 w-5" />
@@ -122,86 +156,46 @@ const NotificationPage = ({ onBackClick }) => {
   };
 
   return (
-    <div className="bg-white rounded-2xl text-black p-6 sm:p-6 lg:p-8"> {/* Changed bg to white and text to black */}
+    // Main container changed to black background and white text
+    <div className="bg-black rounded-2xl text-white p-6 sm:p-6 lg:p-8">
       {/* Header */}
       <div className="flex justify-between items-center mb-6">
         <div className="flex items-center space-x-4">
           {/* Back button now calls onBackClick prop */}
           <button
-            className="text-black bg-gray-200 rounded-[33px] p-[10px] hover:bg-gray-300 transition-colors duration-200" // Changed text to black, bg to gray-200, hover to gray-300
-            onClick={onBackClick} // Add onClick handler
+            // Changed text to white, bg to gray-800, hover to gray-700 for dark theme
+            className="text-white bg-gray-800 rounded-[33px] p-[10px] hover:bg-gray-700 transition-colors duration-200"
+            onClick={onBackClick}
             aria-label="Go back"
           >
             <ArrowLeftIcon className="h-6 w-6" />
           </button>
-          <h1 className="text-[24px] font-medium">Notification</h1> {/* Text is already black from parent */}
+          <h1 className="text-[24px] font-medium">Notification</h1>{" "}
+          {/* Text will be white from parent */}
         </div>
-        <div className="flex items-center">
-          <div className="relative">
-            <MagnifyingGlassIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-500" /> {/* Adjusted icon color */}
-            <input
-              type="text"
-              placeholder="Search"
-              className="pl-10 pr-4 py-2 bg-gray-100 rounded-tl-[7.04px] rounded-bl-[7.04px] border-[1px] border-gray-300 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500 text-black" // Changed bg, border, and added text-black
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-          </div>
-          <button className="bg-[#B92921] p-[5px] hover:bg-gray-300 transition-colors"> {/* Changed bg to gray-200, hover to gray-300 */}
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="25"
-              viewBox="0 0 24 25"
-              fill="none"
-            >
-              <path
-                d="M11 8.5L20 8.5"
-                stroke="white" // Changed stroke to black
-                strokeWidth="1.5"
-                strokeLinecap="round"
-              />
-              <path
-                d="M4 16.5L14 16.5"
-                stroke="white" // Changed stroke to black
-                strokeWidth="1.5"
-                strokeLinecap="round"
-              />
-              <ellipse
-                cx="7"
-                cy="8.5"
-                rx="3"
-                ry="3"
-                transform="rotate(90 7 8.5)"
-                stroke="white" // Changed stroke to black
-                strokeWidth="1.5"
-                strokeLinecap="round"
-              />
-              <ellipse
-                cx="17"
-                cy="16.5"
-                rx="3"
-                ry="3"
-                transform="rotate(90 17 16.5)"
-                stroke="white" // Changed stroke to black
-                strokeWidth="1.5"
-                strokeLinecap="round"
-              />
-            </svg>
-          </button>
-        </div>
+        {/* Removed search bar and filter button */}
       </div>
 
       {/* Notification List Container */}
       <div className="rounded-lg overflow-hidden">
         {groupedNotifications.today.length > 0 && (
           <div className="py-2">
-            <h2 className="text-lg font-semibold text-black px-4 py-4"> {/* Changed text to black */}
-              Today <span className="text-[#71F50C] bg-[#71F50C1A] rounded-full text-[12px] p-2 px-3 font-normal">{groupedNotifications.today.length}</span>
+            <h2 className="text-lg font-semibold text-white px-4 py-4">
+              {" "}
+              {/* Changed text to white */}
+              Today{" "}
+              <span className="text-[#71F50C] bg-[#71F50C1A] rounded-full text-[12px] p-2 px-3 font-normal">
+                {groupedNotifications.today.length}
+              </span>
             </h2>
-            {groupedNotifications.today.map(notif => (
-              <div className='border border-gray-200 rounded mt-2'> {/* Adjusted border color */}
-                <NotificationItem key={notif.id} notification={notif} />
+            {groupedNotifications.today.map((notif) => (
+              <div
+                key={notif.id}
+                className="border border-gray-700 rounded mt-2"
+              >
+                {" "}
+                {/* Adjusted border color */}
+                <NotificationItem notification={notif} />
               </div>
             ))}
           </div>
@@ -209,12 +203,22 @@ const NotificationPage = ({ onBackClick }) => {
 
         {groupedNotifications.yesterday.length > 0 && (
           <div className="py-2">
-            <h2 className="text-lg font-semibold text-black px-4 py-4"> {/* Changed text to black */}
-              Yesterday <span className="text-[#71F50C] bg-[#71F50C1A] rounded-full text-[12px] p-2 px-3 font-normal">{groupedNotifications.yesterday.length}</span>
+            <h2 className="text-lg font-semibold text-white px-4 py-4">
+              {" "}
+              {/* Changed text to white */}
+              Yesterday{" "}
+              <span className="text-[#71F50C] bg-[#71F50C1A] rounded-full text-[12px] p-2 px-3 font-normal">
+                {groupedNotifications.yesterday.length}
+              </span>
             </h2>
-            {groupedNotifications.yesterday.map(notif => (
-              <div className='border border-gray-200 rounded mt-2'> {/* Adjusted border color */}
-                <NotificationItem key={notif.id} notification={notif} />
+            {groupedNotifications.yesterday.map((notif) => (
+              <div
+                key={notif.id}
+                className="border border-gray-700 rounded mt-2"
+              >
+                {" "}
+                {/* Adjusted border color */}
+                <NotificationItem notification={notif} />
               </div>
             ))}
           </div>
@@ -222,12 +226,22 @@ const NotificationPage = ({ onBackClick }) => {
 
         {groupedNotifications.older.length > 0 && (
           <div className="py-2">
-            <h2 className="text-lg font-semibold text-black px-4 py-4"> {/* Changed text to black */}
-              Older <span className="text-[#71F50C] bg-[#71F50C1A] rounded-full text-[12px] p-2 px-3 font-normal">{groupedNotifications.older.length}</span>
+            <h2 className="text-lg font-semibold text-white px-4 py-4">
+              {" "}
+              {/* Changed text to white */}
+              Older{" "}
+              <span className="text-[#71F50C] bg-[#71F50C1A] rounded-full text-[12px] p-2 px-3 font-normal">
+                {groupedNotifications.older.length}
+              </span>
             </h2>
-            {groupedNotifications.older.map(notif => (
-              <div className='border border-gray-200 rounded mt-2'> {/* Adjusted border color */}
-                <NotificationItem key={notif.id} notification={notif} />
+            {groupedNotifications.older.map((notif) => (
+              <div
+                key={notif.id}
+                className="border border-gray-700 rounded mt-2"
+              >
+                {" "}
+                {/* Adjusted border color */}
+                <NotificationItem notification={notif} />
               </div>
             ))}
           </div>
@@ -236,7 +250,9 @@ const NotificationPage = ({ onBackClick }) => {
         {groupedNotifications.today.length === 0 &&
           groupedNotifications.yesterday.length === 0 &&
           groupedNotifications.older.length === 0 && (
-            <p className="p-4 text-center text-gray-500">No notifications found.</p> 
+            <p className="p-4 text-center text-gray-400">
+              No notifications found.
+            </p>
           )}
       </div>
     </div>

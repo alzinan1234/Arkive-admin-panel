@@ -32,58 +32,58 @@ export default function ChangePasswordForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="p-6 flex flex-col items-center">
+    <form
+      onSubmit={handleSubmit}
+      className="p-6 flex flex-col items-center bg-black text-white"
+    >
       {" "}
-      {/* Added flex-col and items-center to center form fields */}
+      {/* Added bg-black and text-white */}
       <div className="mb-4 w-full max-w-[982px]">
-        {" "}
-        {/* Constrain div width for centering */}
         <label
           htmlFor="currentPassword"
-          className="block text-black text-sm font-bold mb-2" // Changed text to black
+          className="block text-white text-sm font-bold mb-2" // Changed text to white
         >
           Current Password
         </label>
         <input
           type="password"
           id="currentPassword"
-          className="shadow appearance-none rounded w-full h-[50px] py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline border border-[#C3C3C3] bg-gray-100" // Changed text and background of input
+          // Changed text and background of input for dark theme
+          className="shadow appearance-none rounded w-full h-[50px] py-3 px-4 text-gray-300 leading-tight focus:outline-none focus:shadow-outline border border-gray-700 "
           value={currentPassword}
           onChange={(e) => setCurrentPassword(e.target.value)}
           required
         />
       </div>
       <div className="mb-4 w-full max-w-[982px]">
-        {" "}
-        {/* Constrain div width for centering */}
         <label
           htmlFor="newPassword"
-          className="block text-black text-sm font-bold mb-2" // Changed text to black
+          className="block text-white text-sm font-bold mb-2" // Changed text to white
         >
           New Password
         </label>
         <input
           type="password"
           id="newPassword"
-          className="shadow appearance-none rounded w-full h-[50px] py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline border border-[#C3C3C3] bg-gray-100" // Changed text and background of input
+          // Changed text and background of input for dark theme
+          className="shadow appearance-none rounded w-full h-[50px] py-3 px-4 text-gray-300 leading-tight focus:outline-none focus:shadow-outline border border-gray-700 "
           value={newPassword}
           onChange={(e) => setNewPassword(e.target.value)}
           required
         />
       </div>
       <div className="mb-6 w-full max-w-[982px]">
-        {" "}
-        {/* Constrain div width for centering */}
         <label
           htmlFor="confirmedPassword"
-          className="block text-black text-sm font-bold mb-2" // Changed text to black
+          className="block text-white text-sm font-bold mb-2" // Changed text to white
         >
           Confirmed Password
         </label>
         <input
           type="password"
           id="confirmedPassword"
-          className="shadow appearance-none rounded w-full h-[50px] py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline border border-[#C3C3C3] bg-gray-100" // Changed text and background of input
+          // Changed text and background of input for dark theme
+          className="shadow appearance-none rounded w-full h-[50px] py-3 px-4 text-gray-300 leading-tight focus:outline-none focus:shadow-outline border border-gray-700 "
           value={confirmedPassword}
           onChange={(e) => setConfirmedPassword(e.target.value)}
           required
@@ -92,7 +92,7 @@ export default function ChangePasswordForm() {
       {message && (
         <p
           className={`text-center mb-4 ${
-            messageType === "success" ? "text-green-500" : "text-red-500"
+            messageType === "success" ? "text-green-400" : "text-red-400" // Adjusted for dark theme
           }`}
         >
           {message}
@@ -101,8 +101,7 @@ export default function ChangePasswordForm() {
       <div className="flex items-center justify-center mt-6 md:w-[982px]">
         <button
           type="submit"
-          className="bg-[#DD0F14] hover:bg-opacity-80 text-white font-bold w-full py-3 px-4 rounded-[4px] focus:outline-none focus:shadow-outline"
-        
+          className="bg-[#DCF3FF] hover:bg-opacity-80 text-black font-bold w-full py-3 px-4 rounded-[4px] focus:outline-none focus:shadow-outline"
         >
           Save Changes
         </button>

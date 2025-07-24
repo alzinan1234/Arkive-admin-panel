@@ -30,13 +30,18 @@ export default function ProfilePage() {
   };
 
   return (
-    <div className="min-h-screen bg-white text-black flex justify-center items-start pt-8 pb-8 rounded-lg"> {/* Changed bg to white, text to black */}
+    // Main container changed to black background and white text
+    <div className="min-h-screen bg-black text-white flex justify-center items-start pt-8 pb-8 rounded-lg">
       <div
         className="flex items-center gap-4 cursor-pointer ml-5"
         onClick={handleBackClick}
       >
         <div className="">
-          <ArrowLeft className="text-black bg-[#E0E0E0] rounded-full p-2" size={40} /> {/* Adjusted ArrowLeft background and text color */}
+          {/* Adjusted ArrowLeft background and text color for dark theme */}
+          <ArrowLeft
+            className="text-white bg-gray-800 rounded-full p-2"
+            size={40}
+          />
         </div>
         <h1 className="text-2xl font-bold">Profile</h1>
       </div>{" "}
@@ -44,7 +49,8 @@ export default function ProfilePage() {
         <div className="p-6">
           <div className="flex justify-center gap-[18px] items-center mb-6">
             <div
-              className="relative rounded-full border-4 border-gray-300 cursor-pointer" // Adjusted border color for visibility on white bg
+              // Adjusted border color for visibility on dark bg
+              className="relative rounded-full border-4 border-gray-700 cursor-pointer"
               onClick={handleImageClick}
             >
               <div className="w-[100px] h-[100px] rounded-full overflow-hidden">
@@ -57,7 +63,8 @@ export default function ProfilePage() {
                   style={{ objectFit: "cover" }}
                 />
               </div>
-              <span className="absolute bottom-0 right-0 bg-blue-500 rounded-full p-1 border-2 border-white"> {/* Adjusted border color to white */}
+              <span className="absolute bottom-0 right-0 bg-blue-500 rounded-full p-1 border-2 border-black">
+                {/* Adjusted border color to black for contrast */}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-4 w-4 text-white"
@@ -73,16 +80,20 @@ export default function ProfilePage() {
               </span>
             </div>
             <div className="flex flex-col gap-[12px]">
-              <h2 className="text-[24px] font-bold mt-3 text-black">Lukas Wagner</h2> {/* Changed text to black */}
-              <p className="text-black font-[400] text-xl">Admin</p> {/* Changed text to black */}
+              <h2 className="text-[24px] font-bold mt-3 text-white">
+                Lukas Wagner
+              </h2>{" "}
+              {/* Changed text to white */}
+              <p className="text-white font-[400] text-xl">Admin</p>{" "}
+              {/* Changed text to white */}
             </div>
           </div>
           <div className="flex justify-center mb-6">
             <button
               className={`py-2 px-6 text-[16px] font-semibold ${
                 activeTab === "editProfile"
-                  ? "border-b-2 border-[#DD0F14] text-[#DD0F14]"
-                  : "text-gray-600 hover:text-gray-900" // Adjusted text color for non-active tabs
+                  ? "border-b-2 border-[#DCF3FF] text-[#DCF3FF]"
+                  : "text-gray-400 hover:text-gray-200" // Adjusted text color for non-active tabs
               }`}
               onClick={() => setActiveTab("editProfile")}
             >
@@ -91,8 +102,8 @@ export default function ProfilePage() {
             <button
               className={`py-2 px-6 text-[16px] font-semibold ${
                 activeTab === "changePassword"
-                  ? "border-b-2 border-[#DD0F14] text-[#DD0F14]"
-                  : "text-gray-600 hover:text-gray-900" // Adjusted text color for non-active tabs
+                  ? "border-b-2 border-[#DCF3FF] text-[#DCF3FF]"
+                  : "text-gray-400 hover:text-gray-200" // Adjusted text color for non-active tabs
               }`}
               onClick={() => setActiveTab("changePassword")}
             >
@@ -114,50 +125,52 @@ export default function ProfilePage() {
                 <div className="mb-4">
                   <label
                     htmlFor="fullName"
-                    className="block text-black text-sm font-bold mb-2" // Changed text to black
+                    className="block text-white text-sm font-bold mb-2" // Changed text to white
                   >
                     Full Name
                   </label>
                   <input
                     type="text"
                     id="fullName"
-                    className="shadow appearance-none rounded w-full h-[50px] py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline border border-[#C3C3C3] bg-gray-100" // Changed text and background of input
+                    // Changed text and background of input for dark theme
+                    className="shadow appearance-none rounded w-full h-[50px] py-3 px-4 text-gray-300 leading-tight focus:outline-none focus:shadow-outline border border-gray-700 "
                     defaultValue="Lukas Wagner"
                   />
                 </div>
                 <div className="mb-4">
                   <label
                     htmlFor="email"
-                    className="block text-black text-sm font-bold mb-2" // Changed text to black
+                    className="block text-white text-sm font-bold mb-2" // Changed text to white
                   >
                     Email
                   </label>
                   <input
                     type="email"
                     id="email"
-                    className="shadow appearance-none rounded w-full h-[50px] py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline border border-[#C3C3C3] bg-gray-100" // Changed text and background of input
+                    // Changed text and background of input for dark theme
+                    className="shadow appearance-none rounded w-full h-[50px] py-3 px-4 text-gray-300 leading-tight focus:outline-none focus:shadow-outline border border-gray-700 "
                     defaultValue="lukas.wagner@example.com"
                   />
                 </div>
                 <div className="mb-4">
                   <label
                     htmlFor="contactNo"
-                    className="block text-black text-sm font-bold mb-2" // Changed text to black
+                    className="block text-white text-sm font-bold mb-2" // Changed text to white
                   >
                     Contact No
                   </label>
                   <input
                     type="tel"
                     id="contactNo"
-                    className="shadow appearance-none rounded w-full h-[50px] py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline border border-[#C3C3C3] bg-gray-100" // Changed text and background of input
+                    // Changed text and background of input for dark theme
+                    className="shadow appearance-none rounded w-full h-[50px] py-3 px-4 text-gray-300 leading-tight focus:outline-none focus:shadow-outline border border-gray-700 "
                     defaultValue="+1234567890"
                   />
                 </div>
                 <div className="flex items-center justify-center mt-6">
                   <button
                     type="submit"
-                    className="bg-[#DD0F14] hover:bg-opacity-80 text-white font-bold w-full py-3 px-4 rounded-[4px] focus:outline-none focus:shadow-outline"
-                    
+                    className="bg-[#DCF3FF] hover:bg-opacity-80 text-black font-bold w-full py-3 px-4 rounded-[4px] focus:outline-none focus:shadow-outline"
                   >
                     Save Changes
                   </button>

@@ -172,22 +172,31 @@ export default function UserDetailsPage({ params }) {
           exit={{ scale: 0.9, opacity: 0, y: 50 }}
           transition={{ duration: 0.3, ease: "easeInOut" }}
         >
+          <div className="flex justify-between items-center mb-4">
+            <h2 className="text-xl font-bold text-[#DCF3FF]">User Details</h2>
+            <button
+              className="text-white text-xl font-bold hover:text-red-500"
+              onClick={() => router.back()}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="9"
+                height="9"
+                viewBox="0 0 9 9"
+                fill="none"
+              >
+                <path
+                  d="M1.10042 8.53868C1.02122 8.53869 0.94379 8.51522 0.877932 8.47122C0.812075 8.42723 0.760744 8.36469 0.730433 8.29152C0.700123 8.21835 0.692193 8.13783 0.707649 8.06015C0.723104 7.98247 0.76125 7.91113 0.81726 7.85513L8.21648 0.45591C8.29158 0.380813 8.39343 0.338623 8.49964 0.338623C8.60584 0.338623 8.70769 0.380813 8.78279 0.45591C8.85789 0.531008 8.90008 0.632862 8.90008 0.739066C8.90008 0.845271 8.85789 0.947125 8.78279 1.02222L1.38357 8.42144C1.34642 8.45867 1.30228 8.48819 1.25369 8.50831C1.2051 8.52843 1.15301 8.53875 1.10042 8.53868Z"
+                  fill="#DCF3FF"
+                />
+                <path
+                  d="M8.49961 8.53868C8.44702 8.53875 8.39493 8.52843 8.34634 8.50831C8.29775 8.48819 8.25361 8.45867 8.21646 8.42144L0.817238 1.02222C0.742141 0.947125 0.699951 0.845271 0.699951 0.739066C0.699951 0.632862 0.742141 0.531008 0.817238 0.45591C0.892336 0.380813 0.99419 0.338623 1.10039 0.338623C1.2066 0.338623 1.30845 0.380813 1.38355 0.45591L8.78277 7.85513C8.83878 7.91113 8.87693 7.98247 8.89238 8.06015C8.90784 8.13783 8.89991 8.21835 8.8696 8.29152C8.83929 8.36469 8.78796 8.42723 8.7221 8.47122C8.65624 8.51522 8.57881 8.53869 8.49961 8.53868Z"
+                  fill="#DCF3FF"
+                />
+              </svg>
+            </button>
+          </div>
 
-            <div className="flex justify-between items-center mb-4">
-            <h2 className="text-xl font-bold mb-4 text-[#DCF3FF]">
-                User Details
-            </h2>
-             <button
-            className="absolute top-2 right-2 text-white text-xl font-bold hover:text-red-500"
-            onClick={() => router.back()}
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 9 9" fill="none">
-  <path d="M1.10042 8.53868C1.02122 8.53869 0.94379 8.51522 0.877932 8.47122C0.812075 8.42723 0.760744 8.36469 0.730433 8.29152C0.700123 8.21835 0.692193 8.13783 0.707649 8.06015C0.723104 7.98247 0.76125 7.91113 0.81726 7.85513L8.21648 0.45591C8.29158 0.380813 8.39343 0.338623 8.49964 0.338623C8.60584 0.338623 8.70769 0.380813 8.78279 0.45591C8.85789 0.531008 8.90008 0.632862 8.90008 0.739066C8.90008 0.845271 8.85789 0.947125 8.78279 1.02222L1.38357 8.42144C1.34642 8.45867 1.30228 8.48819 1.25369 8.50831C1.2051 8.52843 1.15301 8.53875 1.10042 8.53868Z" fill="#DCF3FF"/>
-  <path d="M8.49961 8.53868C8.44702 8.53875 8.39493 8.52843 8.34634 8.50831C8.29775 8.48819 8.25361 8.45867 8.21646 8.42144L0.817238 1.02222C0.742141 0.947125 0.699951 0.845271 0.699951 0.739066C0.699951 0.632862 0.742141 0.531008 0.817238 0.45591C0.892336 0.380813 0.99419 0.338623 1.10039 0.338623C1.2066 0.338623 1.30845 0.380813 1.38355 0.45591L8.78277 7.85513C8.83878 7.91113 8.87693 7.98247 8.89238 8.06015C8.90784 8.13783 8.89991 8.21835 8.8696 8.29152C8.83929 8.36469 8.78796 8.42723 8.7221 8.47122C8.65624 8.51522 8.57881 8.53869 8.49961 8.53868Z" fill="#DCF3FF"/>
-</svg>
-          </button>
-            </div>
-         
           <div className="w-full h-48 rounded-lg overflow-hidden mb-4 bg-gray-700 flex items-center justify-center">
             {" "}
             {/* Added bg for placeholder */}
@@ -207,7 +216,9 @@ export default function UserDetailsPage({ params }) {
               <span className="text-gray-400">No Image</span>
             )}
           </div>
-          <h2 className="text-2xl font-bold mb-2 text-white">{user.customer.name}</h2>
+          <h2 className="text-2xl font-bold mb-2 text-white">
+            {user.customer.name}
+          </h2>
 
           <p className="text-white mb-1 flex items-center">
             {/* Email Icon */}
@@ -248,7 +259,7 @@ export default function UserDetailsPage({ params }) {
           <p className="text-sm text-white mt-2 flex items-center">
             {/* Account Status Icon */}
             <svg
-            className="w-4 h-4 mr-2"
+              className="w-4 h-4 mr-2"
               xmlns="http://www.w3.org/2000/svg"
               width="16"
               height="17"

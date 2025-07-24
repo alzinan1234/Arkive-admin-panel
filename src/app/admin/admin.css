@@ -27,7 +27,7 @@ body {
 /* The .jodit-container.jodit_theme_dark ensures it only applies when the dark theme is active */
 .jodit-container.jodit_theme_dark .jodit-workplace,
 .jodit-container.jodit_theme_dark .jodit-wysiwyg {
-  background-color: #343434 !important; /* Matches your 'dark-bg' color */
+  background-color: #000000 !important; /* Matches your 'dark-bg' color */
   color: #ffffff !important;
   padding: 20px;
 
@@ -36,7 +36,7 @@ body {
 }
 
 .jodit-container.jodit_theme_dark .jodit-toolbar__box {
-  background-color: #343434 !important;
+  background-color: #000000 !important;
   border: none;
 
   padding-bottom: 0px;
