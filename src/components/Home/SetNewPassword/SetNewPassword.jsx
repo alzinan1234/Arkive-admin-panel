@@ -115,7 +115,7 @@ export default function App() {
                     <input
                       type={showNewPassword ? "text" : "password"}
                       id="newPassword"
-                      className="h-10 px-3 py-2.5 bg-[#3B3B3B] rounded-md border border-[#DCDCDC] text-white focus:outline-none focus:ring-1 focus:ring-[#66B8FF] font-[Inter] w-full pr-10"
+                      className="h-10 px-3 py-2.5  rounded-md border border-[#DCDCDC] text-white focus:outline-none focus:ring-1 focus:ring-[#66B8FF] font-[Inter] w-full pr-10"
                       placeholder=""
                       value={newPassword}
                       onChange={(e) => setNewPassword(e.target.value)}
@@ -176,7 +176,7 @@ export default function App() {
                     <input
                       type={showConfirmPassword ? "text" : "password"}
                       id="confirmPassword"
-                      className="h-10 px-3 py-2.5 bg-[#3B3B3B] rounded-md border border-[#DCDCDC] text-white focus:outline-none focus:ring-1 focus:ring-[#66B8FF] font-[Inter] w-full pr-10"
+                      className="h-10 px-3 py-2.5  rounded-md border border-[#DCDCDC] text-white focus:outline-none focus:ring-1 focus:ring-[#66B8FF] font-[Inter] w-full pr-10"
                       placeholder=""
                       value={confirmPassword}
                       onChange={(e) => setConfirmPassword(e.target.value)}

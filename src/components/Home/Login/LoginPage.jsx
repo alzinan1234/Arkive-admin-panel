@@ -138,7 +138,7 @@ export default function LoginPage() {
                     <input
                       type="email"
                       id="email"
-                      className="self-stretch h-10 w-full px-3 py-2.5 bg-[#3B3B3B] rounded-md border border-[#DCDCDC] text-white focus:outline-none focus:ring-1 focus:ring-[#66B8FF] font-[Inter]"
+                      className="self-stretch h-10 w-full px-3 py-2.5  rounded-md border border-[#DCDCDC] text-white focus:outline-none focus:ring-1 focus:ring-[#66B8FF] font-[Inter]"
                       placeholder=""
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
@@ -157,7 +157,7 @@ export default function LoginPage() {
                       <input
                         type={showPassword ? "text" : "password"} 
                         id="password"
-                        className="h-10 px-3 py-2.5 bg-[#3B3B3B] rounded-md border border-[#DCDCDC] text-white focus:outline-none focus:ring-1 focus:ring-[#66B8FF] font-[Inter] w-full pr-10"
+                        className="h-10 px-3 py-2.5  rounded-md border border-[#DCDCDC] text-white focus:outline-none focus:ring-1 focus:ring-[#66B8FF] font-[Inter] w-full pr-10"
                         placeholder=""
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
