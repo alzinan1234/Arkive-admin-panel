@@ -365,7 +365,7 @@ export default function UserList() {
                           </button>
                         )}
                         {/* Delete icon */}
-                        <button
+                        {/* <button
                           onClick={() => handleDelete(user)}
                           title="Delete user"
                         >
@@ -383,7 +383,7 @@ export default function UserList() {
                               d="M6 18L18 6M6 6l12 12"
                             />
                           </svg>
-                        </button>
+                        </button> */}
                       </div>
                     </td>
                   </tr>

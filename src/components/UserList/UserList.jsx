@@ -314,15 +314,19 @@ export default function UserList() {
           </div>
           {/* Status filter */}
           <div className="relative border border-[#E9E7FD] rounded-lg ml-2">
-            <select
-              className="appearance-none text-gray-300 py-2 pl-3 pr-8 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 "
+            <div className="">
+              <select
+              className="appearance-none text-gray-400 py-2 pl-3 pr-8 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 "
               value={status}
               onChange={handleStatus}
             >
-              <option value="All">Status : All</option>
+              <div className="text-black">
+                <option value="All">Status : All</option>
               <option value="Active">Active</option>
               <option value="Blocked">Blocked</option>
+              </div>
             </select>
+            </div>
             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-400">
               <svg
                 className="fill-current h-4 w-4"
@@ -418,7 +422,7 @@ export default function UserList() {
                   </td>
                   <td className="px-3 py-3 sm:px-6 whitespace-nowrap text-sm text-gray-300">{user.joinDate}</td>
                   <td className="px-3 py-3 sm:px-6 whitespace-nowrap">
-                    <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${user.status === "Active" ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"}`}>{user.status}</span>
+                    <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${user.status === "Active" ? " text-[#4BB54B]" : " text-[#F33437]"}`}>{user.status}</span>
                   </td>
                   <td className="px-3 py-3 sm:px-6 whitespace-nowrap text-sm font-medium">
                     <div className="flex items-center space-x-2">
@@ -451,11 +455,11 @@ export default function UserList() {
                         </button>
                       )}
                       {/* Delete icon */}
-                      <button onClick={() => handleDelete(user)} title="Delete user">
+                      {/* <button onClick={() => handleDelete(user)} title="Delete user">
                         <svg className="h-5 w-5 text-red-500 cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
                         </svg>
-                      </button>
+                      </button> */}
                     </div>
                   </td>
                 </tr>
@@ -469,6 +473,7 @@ export default function UserList() {
       <div className="flex items-center justify-between p-4 sm:p-6 border-t border-gray-700">
         {/* Page size dropdown */}
         <div className="relative inline-block text-left">
+         Showing
           <select
             className="appearance-none text-gray-300 border border-[#E9E7FD] py-2 pl-3 pr-8 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-[#4A4A4A]"
             value={pageSize}
