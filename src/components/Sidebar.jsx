@@ -131,7 +131,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
 
           {/* Logout Button */}
           <div className="border-t border-[#D6D6D6] py-5 ">
-            <button onClick={handleLogout} className="flex ml-9 gap-2 items-center text-[#FF0000] hover:text-red-600">
+            <button onClick={handleLogout} className="flex ml-9 gap-2 cursor-pointer items-center text-[#FF0000] hover:text-red-600">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="20"

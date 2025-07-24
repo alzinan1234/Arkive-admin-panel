@@ -111,10 +111,10 @@ export default function EarningsTable() {
       {/* Pagination Controls */}
       <div className="flex flex-col sm:flex-row justify-between items-center mt-6 text-white text-sm">
         {/* Items per page dropdown */}
-        <div className="mb-4 sm:mb-0">
+        <div className="mb-4 sm:mb-0 ">
           Showing{" "}
           <select
-            className="bg-[#232323] border border-[#333] rounded px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-[#DCF3FF] text-white"
+            className="bg-[#232323] border border-[#333] rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#DCF3FF] text-white"
             value={itemsPerPage}
             onChange={handleItemsPerPageChange}
             aria-label="Items per page"
