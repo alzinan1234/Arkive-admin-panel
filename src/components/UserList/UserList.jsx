@@ -283,8 +283,16 @@ export default function UserList() {
 
 
   return (
+    <>
+
+    <div>
+<h2 className="text-xl sm:text-2xl font-semibold p-4 sm:p-6 ">User List</h2>
+    </div>
+    
+    
+
     <div className="w-full text-white px-6 py-5 bg-[#2D2D2D] rounded-[20px] shadow-[0px_2px_12px_0px_rgba(44,120,220,0.08)] font-sans">
-      <h2 className="text-xl sm:text-2xl font-semibold p-4 sm:p-6 ">User List</h2>
+      
       {/* Header with Search, Status, and Date Filter Button */}
       <div className="flex flex-col sm:flex-row items-center justify-between mb-4 border-gray-700">
         <div className="flex items-center w-full sm:w-auto mb-4 sm:mb-0">
@@ -469,51 +477,7 @@ export default function UserList() {
         </table>
       </div>
 
-      {/* Pagination */}
-      <div className="flex items-center justify-between p-4 sm:p-6 border-t border-gray-700">
-        {/* Page size dropdown */}
-        <div className="relative inline-block text-left">
-         Showing
-          <select
-            className="appearance-none text-gray-300 border border-[#E9E7FD] py-2 pl-3 pr-8 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-[#4A4A4A]"
-            value={pageSize}
-            onChange={handlePageSize}
-          >
-            <option value="10">10</option>
-            <option value="20">20</option>
-            <option value="30">30</option>
-          </select>
-          <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-400">
-            <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-              <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 6.757 7.586 5.343 9z" />
-            </svg>
-          </div>
-        </div>
-        <div className="text-sm text-gray-300 ml-2">
-          of <span className="font-semibold">{total}</span>
-        </div>
-        <div className="flex items-center space-x-2 ml-auto">
-          <button className="p-2 rounded-lg text-gray-400 hover:bg-gray-700" onClick={() => handlePage(page - 1)} disabled={page === 1}>
-            <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
-            </svg>
-          </button>
-          {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
-            <button
-              key={p}
-              className={`px-3 py-1 rounded-lg text-sm font-semibold ${p === page ? "bg-[#DCF3FF] text-black" : "bg-gray-700 text-gray-300 hover:bg-gray-600"}`}
-              onClick={() => handlePage(p)}
-            >
-              {p}
-            </button>
-          ))}
-          <button className="p-2 rounded-lg text-gray-400 hover:bg-gray-700" onClick={() => handlePage(page + 1)} disabled={page === totalPages}>
-            <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
-        </div>
-      </div>
+     
 
       {/* Confirmation Modal (for Unblock) */}
       <AnimatePresence>
@@ -554,5 +518,52 @@ export default function UserList() {
       </AnimatePresence>
       <Toaster /> {/* Add Toaster component here */}
     </div>
+
+     {/* Pagination */}
+      <div className="flex items-center justify-between p-4 sm:p-6  border-gray-700">
+        {/* Page size dropdown */}
+        <div className="relative inline-block text-left">
+         Showing
+          <select
+            className="appearance-none text-gray-300 border border-[#E9E7FD] py-2 pl-3 pr-8 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 "
+            value={pageSize}
+            onChange={handlePageSize}
+          >
+            <option value="10">10</option>
+            <option value="20">20</option>
+            <option value="30">30</option>
+          </select>
+          <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-400">
+            <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+              <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 6.757 7.586 5.343 9z" />
+            </svg>
+          </div>
+        </div>
+        <div className="text-sm text-gray-300 ml-2">
+          of <span className="font-semibold">{total}</span>
+        </div>
+        <div className="flex items-center space-x-2 ml-auto">
+          <button className="p-2 rounded-lg text-gray-400 hover:bg-gray-700" onClick={() => handlePage(page - 1)} disabled={page === 1}>
+            <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+          {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
+            <button
+              key={p}
+              className={`px-3 py-1 rounded-lg text-sm font-semibold ${p === page ? "bg-[#DCF3FF] text-black" : "bg-gray-700 text-gray-300 hover:bg-gray-600"}`}
+              onClick={() => handlePage(p)}
+            >
+              {p}
+            </button>
+          ))}
+          <button className="p-2 rounded-lg text-gray-400 hover:bg-gray-700" onClick={() => handlePage(page + 1)} disabled={page === totalPages}>
+            <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </>
   );
 }
