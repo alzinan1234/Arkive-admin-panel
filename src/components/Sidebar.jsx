@@ -16,6 +16,7 @@ import {
   Image as ImageIcon,
   BanknoteArrowDown,
   Users2,
+  UserPlus2,
 } from "lucide-react";
 import Image from "next/image";
 import dreckks from "../../public/tika-food.svg"; // This import seems unused
@@ -26,7 +27,7 @@ const navItems = [
   {
     name: "User List",
     href: "/admin/user-list",
-    icon: Users2,
+    icon: Users,
   },
 { name: "Earning Overview", href: "/admin/earning", icon: (props) => (
   <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none" {...props}>
@@ -111,7 +112,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
                       // Change SVG color based on active state
                       // The SVG uses fill="#FFFFFF" for white, change to black if active
                       // We'll override fill via props
-                      fill={isActive ? "#121212" : ""}
+                      stroke={isActive ? "#121212" : "#ffff"}
                     />
                     <span className="font-medium text-[16px]">{name}</span>
                   </Link>

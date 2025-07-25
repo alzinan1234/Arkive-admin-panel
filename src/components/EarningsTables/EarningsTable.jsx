@@ -42,7 +42,7 @@ export default function EarningsTable() {
       <h2 className="text-white text-xl font-bold mb-4">Earning Overview</h2>
       <div className="bg-[#DCF3FF] rounded-lg p-4 mb-6 w-full sm:w-[400px] shadow-lg">
         <div className="text-[#181818] text-md font-medium">Total Earning</div>
-        <div className="text-3xl font-bold text-[#181818]">$25,215</div>
+        <div className="text-4xl font-bold text-[#181818]">$25,215</div>
       </div>
 
       {/* Earnings Table */}
