@@ -189,9 +189,11 @@ export default function UserList() {
   };
 
   return (
-    <div className="w-full text-white px-6 py-5 bg-[#2D2D2D] rounded-[20px] shadow-[0px_2px_12px_0px_rgba(44,120,220,0.08)] font-sans">
-      {/* Header - Search, Status, and Date Filter Button removed */}
+    <div>
       <h2 className="text-xl sm:text-2xl font-semibold p-4  ">User List</h2>
+      <div className="w-full text-white px-6 py-5 bg-[#2D2D2D] rounded-[20px] shadow-[0px_2px_12px_0px_rgba(44,120,220,0.08)] font-sans">
+      {/* Header - Search, Status, and Date Filter Button removed */}
+      
       <div className="flex flex-col sm:flex-row items-center justify-between mb-4 border-gray-700">
         {/* Removed Search input and Status filter dropdown */}
         {/* Removed Filter by date range button */}
@@ -395,6 +397,7 @@ export default function UserList() {
       </div>
       {/* Pagination removed */}
       <Toaster /> {/* Add Toaster component here */}
+    </div>
     </div>
   );
 }

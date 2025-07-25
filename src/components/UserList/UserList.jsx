@@ -289,19 +289,14 @@ export default function UserList() {
 <h2 className="text-xl sm:text-2xl font-semibold p-4 sm:p-6 ">User List</h2>
     </div>
     
-    
-
-    <div className="w-full text-white px-6 py-5 bg-[#2D2D2D] rounded-[20px] shadow-[0px_2px_12px_0px_rgba(44,120,220,0.08)] font-sans">
-      
-      {/* Header with Search, Status, and Date Filter Button */}
-      <div className="flex flex-col sm:flex-row items-center justify-between mb-4 border-gray-700">
+    <div className="flex flex-col sm:flex-row items-center justify-between mb-4 border-gray-700">
         <div className="flex items-center w-full sm:w-auto mb-4 sm:mb-0">
           {/* Search */}
           <div className="relative w-full sm:w-64 mr-0 sm:mr-4">
             <input
               type="text"
               placeholder="Search..."
-              className="w-full pl-5 pr-4 py-2 rounded-lg border border-[#E9E7FD] text-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 "
+              className="w-full pl-5 pr-4 py-2 rounded-lg border border-[#E9E7FD] bg-[#2D2D2D]  text-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 "
               value={search}
               onChange={handleSearch}
             />
@@ -321,7 +316,7 @@ export default function UserList() {
             </svg>
           </div>
           {/* Status filter */}
-          <div className="relative border border-[#E9E7FD] rounded-lg ml-2">
+          <div className="relative border border-[#E9E7FD] bg-[#2D2D2D]  rounded-lg ml-2">
             <div className="">
               <select
               className="appearance-none text-gray-400 py-2 pl-3 pr-8 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 "
@@ -348,7 +343,7 @@ export default function UserList() {
         </div>
         {/* Filter by date range button */}
         <button
-          className="border border-[#E9E7FD] text-gray-300 py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 flex items-center cursor-pointer "
+          className="border border-[#E9E7FD] bg-[#2D2D2D]  text-gray-300 py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 flex items-center cursor-pointer "
           onClick={() => setShowDateFilter((prev) => !prev)}
         >
           <svg
@@ -390,6 +385,11 @@ export default function UserList() {
           />
         </div>
       )}
+
+    <div className="w-full text-white px-6 py-5 bg-[#2D2D2D] rounded-[20px] shadow-[0px_2px_12px_0px_rgba(44,120,220,0.08)] font-sans">
+      
+      {/* Header with Search, Status, and Date Filter Button */}
+      
 
       <div className="overflow-x-auto">
         <table className="min-w-full divide-y divide-gray-700">
