@@ -74,7 +74,7 @@ const RecentSubscriber = () => {
         {/* View all button */}
         <button className="inline-flex justify-start items-center gap-[5px] cursor-pointer focus:outline-none">
           <div className="text-white text-base font-semibold font-montserrat leading-7">
-            View all
+             
           </div>
           {/* Arrow Icon */}
      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">

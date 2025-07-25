@@ -114,7 +114,7 @@ export default function EarningsTable() {
         <div className="mb-4 sm:mb-0 ">
           Showing{" "}
           <select
-            className="bg-[#232323] border border-[#333] rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#DCF3FF] text-white"
+            className=" border border-[#333] rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#DCF3FF] text-white"
             value={itemsPerPage}
             onChange={handleItemsPerPageChange}
             aria-label="Items per page"

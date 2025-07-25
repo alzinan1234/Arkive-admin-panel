@@ -28,7 +28,13 @@ const navItems = [
     href: "/admin/user-list",
     icon: Users2,
   },
-  { name: "Earning", href: "/admin/earning", icon: Wallet },
+{ name: "Earning Overview", href: "/admin/earning", icon: (props) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none" {...props}>
+  <path d="M13.9 18.2672H11.39C9.75 18.2672 8.42 16.8872 8.42 15.1872C8.42 14.7772 8.76 14.4372 9.17 14.4372C9.58 14.4372 9.92 14.7772 9.92 15.1872C9.92 16.0572 10.58 16.7672 11.39 16.7672H13.9C14.55 16.7672 15.09 16.1872 15.09 15.4872C15.09 14.6172 14.78 14.4472 14.27 14.2672L10.24 12.8472C9.46 12.5772 8.41 11.9972 8.41 10.2072C8.41 8.66725 9.62 7.42725 11.1 7.42725H13.61C15.25 7.42725 16.58 8.80725 16.58 10.5072C16.58 10.9172 16.24 11.2572 15.83 11.2572C15.42 11.2572 15.08 10.9172 15.08 10.5072C15.08 9.63725 14.42 8.92725 13.61 8.92725H11.1C10.45 8.92725 9.91 9.50725 9.91 10.2072C9.91 11.0772 10.22 11.2472 10.73 11.4272L14.76 12.8472C15.54 13.1172 16.59 13.6972 16.59 15.4872C16.58 17.0172 15.38 18.2672 13.9 18.2672Z" fill="white"/>
+  <path d="M12.5 19.5972C12.09 19.5972 11.75 19.2572 11.75 18.8472V6.84717C11.75 6.43717 12.09 6.09717 12.5 6.09717C12.91 6.09717 13.25 6.43717 13.25 6.84717V18.8472C13.25 19.2572 12.91 19.5972 12.5 19.5972Z" fill="white"/>
+  <path d="M15.5 23.5972H9.5C4.07 23.5972 1.75 21.2772 1.75 15.8472V9.84717C1.75 4.41717 4.07 2.09717 9.5 2.09717H15.5C20.93 2.09717 23.25 4.41717 23.25 9.84717V15.8472C23.25 21.2772 20.93 23.5972 15.5 23.5972ZM9.5 3.59717C4.89 3.59717 3.25 5.23717 3.25 9.84717V15.8472C3.25 20.4572 4.89 22.0972 9.5 22.0972H15.5C20.11 22.0972 21.75 20.4572 21.75 15.8472V9.84717C21.75 5.23717 20.11 3.59717 15.5 3.59717H9.5Z" fill="white"/>
+</svg>
+) },
   { name: "Settings", href: "/admin/settings", icon: Settings },
 ];
 
@@ -47,7 +53,6 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
   return (
     <>
       <aside
-        // Changed sidebar background to white and text to black
         className={`fixed top-0 left-0 h-full bg-[#2D2D2D] text-white shadow-lg z-50 transform transition-transform duration-300 ease-in-out ${
           isOpen ? "translate-x-0 w-64" : "-translate-x-full w-64"
         }`}
@@ -56,12 +61,11 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
           {/* Logo & Close Button */}
           <div className="flex items-center justify-between border-b border-[#D6D6D6] pb-4 p-[30px]">
             <Image
-              src="/ARKIVE.png" // or imported static asset
+              src="/ARKIVE.png"
               alt="Description"
               width={128}
               height={39}
             />
-            {/* Updated hover state for white background */}
             <button
               onClick={() => setIsOpen(false)}
               className="p-1 hover:bg-gray-600 rounded text-[#494949]"
@@ -93,19 +97,36 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
           <nav className="mt-4 space-y-6 flex-grow overflow-y-auto">
             {navItems.map(({ name, href, icon: Icon }) => {
               const isActive = pathname === href;
+              // Special handling for Earning Overview icon
+              if (name === "Earning Overview") {
+                return (
+                  <Link
+                    key={name}
+                    href={href}
+                    className={`flex items-center py-3 px-4 w-[218px] mx-auto  transition-all rounded-[11px] ${
+                      isActive ? "bg-[#DCF3FF] text-[#131123]" : ""
+                    }`}
+                  >
+                    <Icon className="w-5 h-5 mr-3" style={{ minWidth: 20, minHeight: 20 }}
+                      // Change SVG color based on active state
+                      // The SVG uses fill="#FFFFFF" for white, change to black if active
+                      // We'll override fill via props
+                      fill={isActive ? "#121212" : ""}
+                    />
+                    <span className="font-medium text-[16px]">{name}</span>
+                  </Link>
+                );
+              }
               return (
                 <Link
                   key={name}
                   href={href}
-                  // Updated active and hover states for new background/text colors
-                  className={`flex items-center px-4 w-[218px] mx-auto py-2 transition-all rounded ${
-                    isActive
-                      ? "bg-[#DCF3FF] text-[#131123]" // Kept white text for active for better contrast on cyan
-                      : "" // Changed hover to light gray
+                  className={`flex items-center py-3 px-4 w-[218px] mx-auto  transition-all rounded-[11px] ${
+                    isActive ? "bg-[#DCF3FF] text-[#131123]" : ""
                   }`}
                 >
                   <Icon className="w-5 h-5 mr-3" />
-                  <span className="font-normal text-[14px]">{name}</span>
+                  <span className="font-medium text-[16px]">{name}</span>
                 </Link>
               );
             })}
