@@ -113,9 +113,9 @@ export default function LoginPage() {
                   alt="Arkive logo"
                   width={128} // Set your desired width
                   height={39} // Set your desired height
-                  className="rounded-lg object-cover" // Optional Tailwind classes
+                  className=" " // Optional Tailwind classes
                 />
-                <p className="self-stretch text-start text-white text-[24px] font-semibold font-[Inter]">
+                <p className="self-stretch text-start text-white text-[24px] font-semibold font-[DM Sans] ">
                   Welcome to Arkive
                 </p>
                 <p className="self-stretch text-start text-[#DCF3FF] text-sm font-semibold font-[Inter]">

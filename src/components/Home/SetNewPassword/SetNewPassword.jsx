@@ -90,7 +90,7 @@ export default function App() {
                   alt="Arkive background"
                   width={128} // Set your desired width
                   height={39} // Set your desired height
-                  className="rounded-lg object-cover" // Optional Tailwind classes
+                  className="" // Optional Tailwind classes
                 />
                 <p className="self-stretch text-start text-white text-[24px] font-semibold font-[Inter]">
                   Set New Password
