@@ -7,22 +7,20 @@ import {
   YAxis,
   Tooltip,
   ResponsiveContainer,
-  Rectangle // Used for custom bar shape
+  
 } from "recharts";
 
 const EarningOverviewChart = () => {
-  // State to manage the selected year for the chart
+  
   const [selectedYear, setSelectedYear] = useState(2025);
-  // State to manage the visibility of the year dropdown
+
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  // State to hold the earning data, which will change based on the selected year
+
   const [currentEarningData, setCurrentEarningData] = useState([]);
 
-  // Define the available years for the dropdown
   const years = [2023, 2024, 2025, 2026];
 
-  // Function to simulate fetching/generating earning data based on the year
-  // This function ensures the active bar for 'Jun' remains highlighted as per original design.
+
   const generateEarningData = useCallback((year) => {
     const baseData = [
       { month: "Jan", height: 58, value: 5800, active: false },
@@ -30,7 +28,7 @@ const EarningOverviewChart = () => {
       { month: "Mar", height: 98, value: 9800, active: false },
       { month: "Apr", height: 112, value: 11200, active: false },
       { month: "May", height: 90, value: 9000, active: false },
-      { month: "Jun", height: 161, value: 16100, active: true }, // Always highlight June for demonstration
+      { month: "Jun", height: 161, value: 16100, active: true }, 
       { month: "Jul", height: 78, value: 7800, active: false },
       { month: "Aug", height: 142, value: 14200, active: false },
       { month: "Sep", height: 39, value: 3900, active: false },
@@ -39,43 +37,43 @@ const EarningOverviewChart = () => {
       { month: "Dec", height: 98, value: 9800, active: false },
     ];
 
-    // Apply a simple variation to heights and values based on the year to show dynamic data
+ 
     return baseData.map((item) => {
       let newHeight = item.height;
       let newValue = item.value;
       if (year === 2024) {
-        newHeight = Math.max(20, item.height - 20); // Slightly lower for 2024
+        newHeight = Math.max(20, item.height - 20); 
         newValue = Math.max(2000, item.value - 2000);
       } else if (year === 2023) {
-        newHeight = Math.max(20, item.height - 40); // Even lower for 2023
+        newHeight = Math.max(20, item.height - 40); 
         newValue = Math.max(2000, item.value - 4000);
       } else if (year === 2026) {
-        newHeight = Math.min(180, item.height + 10); // Slightly higher for 2026
+        newHeight = Math.min(180, item.height + 10); 
         newValue = Math.min(18000, item.value + 1000);
       }
       return {
         ...item,
         height: newHeight,
         value: newValue,
-        active: item.month === "Jun", // Ensure 'Jun' remains active
+        active: item.month === "Jun", 
       };
     });
-  }, []); // useCallback to memoize the function
+  }, []); 
 
-  // Effect hook to update earning data whenever the selected year changes
+  
   useEffect(() => {
     setCurrentEarningData(generateEarningData(selectedYear));
-  }, [selectedYear, generateEarningData]); // Add generateEarningData to dependencies
+  }, [selectedYear, generateEarningData]); 
 
-  // Define chart dimensions for Recharts
-  const chartHeight = 161; // Max height for bars
-  const chartWidth = 737; // Overall chart width for Recharts ResponsiveContainer
+ 
+  const chartHeight = 161; 
+  const chartWidth = 737; 
 
-  // Custom Bar component to use a div with Tailwind classes for the active bar
+ 
   const CustomBar = (props) => {
     const { x, y, width, height, payload } = props;
     const isActive = payload.active;
-    // Use a div for the bar, styled with Tailwind classes
+    
     return (
       <foreignObject x={x} y={y} width={width} height={height} style={{ overflow: 'visible' }}>
         <div
@@ -86,7 +84,6 @@ const EarningOverviewChart = () => {
     );
   };
 
-  // Custom Tooltip component
   const CustomTooltip = ({ active, payload, label }) => {
     if (active && payload && payload.length) {
       return (
@@ -99,16 +96,15 @@ const EarningOverviewChart = () => {
     return null;
   };
 
-  // Function to toggle the dropdown visibility
+
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
-  // Function to handle year selection from the dropdown
   const handleYearSelect = (year, event) => {
-    event.stopPropagation(); // Prevent the click from bubbling up and re-toggling the dropdown
+    event.stopPropagation(); 
     setSelectedYear(year);
-    setIsDropdownOpen(false); // Close the dropdown after selection
+    setIsDropdownOpen(false); 
   };
 
   return (
@@ -167,18 +163,17 @@ const EarningOverviewChart = () => {
         {/* Chart Section */}
         <div className="self-stretch flex flex-col justify-start items-start gap-[5px]">
           <div className=" flex items-center gap-4 relative w-full">
-            {/* Top dashed line and value */}
-            {/* This is positioned absolutely to overlay the chart area */}
+        
             <div className="absolute top-0 left-0 w-full h-0 border-t border-dashed border-blue-200 z-10"></div>
             <div className="absolute  right-0 bg-[#2D2D2D] text-xs font-medium font-montserrat leading-tight z-10">
               $179
             </div>
           </div>
 
-          {/* Recharts Bar Chart */}
+  
           <div
             className="w-full"
-            style={{ height: `${chartHeight + 20}px` }} // Added some padding for XAxis labels
+            style={{ height: `${chartHeight + 20}px` }} 
           >
             <ResponsiveContainer width="100%" height="100%">
               <BarChart
@@ -187,26 +182,26 @@ const EarningOverviewChart = () => {
               >
                 <XAxis
                   dataKey="month"
-                  axisLine={false} // Hide X-axis line
-                  tickLine={false} // Hide X-axis tick marks
-                  interval={0} // Show all labels
+                  axisLine={false} 
+                  tickLine={false} 
+                  interval={0} 
                   tick={{
-                    fill: "#94a3b8", // slate-400
-                    fontSize: 12, // text-xs
-                    fontWeight: 500, // font-medium
+                    fill: "#94a3b8", 
+                    fontSize: 12,
+                    fontWeight: 500, 
                     fontFamily: "Montserrat",
                   }}
-                  height={30} // Height for labels
+                  height={30} 
                 />
                 <YAxis
-                  hide // Hide Y-axis as per original design
-                  domain={[0, 180]} // Set domain to match max bar height (161) and leave room for $179 line
+                  hide 
+                  domain={[0, 180]} 
                 />
                 <Tooltip cursor={false} content={<CustomTooltip />} />
                 <Bar
                   dataKey="height"
-                  shape={<CustomBar />} // Use custom bar component for styling
-                  isAnimationActive={false} // Disable animation for instant rendering
+                  shape={<CustomBar />} 
+                  isAnimationActive={false} 
                 />
               </BarChart>
             </ResponsiveContainer>
