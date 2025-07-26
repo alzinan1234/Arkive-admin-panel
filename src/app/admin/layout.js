@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Montserrat } from "next/font/google";
 import "./admin.css";
 import Sidebar from "@/components/Sidebar";
 import Topbar from "@/components/Topbar";
@@ -16,6 +16,13 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
+
+const montserrat = Montserrat({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'], // choose weights you need
+  variable: '--font-montserrat', // optional for using with Tailwind
+  display: 'swap',
+})
 
 export default function RootLayout({ children }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -36,7 +43,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${montserrat.variable} antialiased`}
       >
         <div className="flex bg-black  text-white min-h-screen">
           <Sidebar isOpen={isOpen} setIsOpen={setIsOpen} />
