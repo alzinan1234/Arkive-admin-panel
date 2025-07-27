@@ -191,7 +191,7 @@ export default function UserList() {
   return (
     <div>
       <h2 className="text-xl sm:text-2xl font-semibold pb-4 ">User List</h2>
-      <div className="w-full text-white px-6 py-4 bg-[#2D2D2D] rounded-[20px] shadow-[0px_2px_12px_0px_rgba(44,120,220,0.08)] font-sans">
+      <div className="w-full text-white px-6 py-4 bg-[#2D2D2D] rounded-[20px] shadow-[0px_2px_12px_0px_rgba(44,120,220,0.08)] ">
       {/* Header - Search, Status, and Date Filter Button removed */}
       
       <div className="flex flex-col sm:flex-row items-center justify-between mb-4 border-gray-700">

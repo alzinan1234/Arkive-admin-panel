@@ -85,17 +85,13 @@ export default function App() {
             <div className="self-stretch flex flex-col justify-center items-center gap-[30px]">
               <div className="w-full flex flex-col justify-start gap-[18px]">
                 {/* ARKIVE Logo/Text */}
-                <Image
-                  src="/ARKIVE.png" // Path to your image in the public folder
-                  alt="Arkive background"
-                  width={128} // Set your desired width
-                  height={39} // Set your desired height
-                  className="" // Optional Tailwind classes
-                />
+               <h1 className="text-white text-[34.86px] font-bold leading-normal tracking-[-0.697px] ">
+                  ARKIVE
+                </h1>
                 <p className="self-stretch text-start text-white text-[24px] font-semibold ">
                   Set New Password
                 </p>
-                <p className="self-stretch text-start text-[#DCF3FF] text-sm font-semibold ">
+                <p className="self-stretch text-start text-[#FFF] text-sm font-semibold ">
                   Enter your new password and make sure you remember it:
                 </p>
               </div>
@@ -236,7 +232,7 @@ export default function App() {
                 {/* Save Changes Button */}
                 <button
                   type="submit"
-                  className={`w-full h-10 mx-auto mt-4 bg-[#DCF3FF] text-[#23272E] rounded-md text-sm font-normal font-[Inter] shadow-[0px_4px_4px_rgba(0,0,0,0.25)] flex justify-center items-center transition duration-300 ease-in-out hover:bg-[#509FE0] ${
+                  className={`w-full h-10 mx-auto mt-4 bg-[#FFF] text-[#23272E] rounded-md text-sm font-normal font-[Inter] shadow-[0px_4px_4px_rgba(0,0,0,0.25)] flex justify-center items-center transition duration-300 ease-in-out  ${
                     loading ? "opacity-70 cursor-not-allowed" : ""
                   }`}
                   disabled={loading}

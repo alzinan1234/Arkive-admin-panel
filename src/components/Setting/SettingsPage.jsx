@@ -140,7 +140,7 @@ const SettingsPage = ({ onBackClick }) => {
           <button
             type="button"
             onClick={handleSaveAndChange}
-            className="w-full mx-auto flex justify-center items-center rounded-[4px] bg-[#DCF3FF]  text-black py-2 font-semibold"
+            className="w-full mx-auto flex justify-center items-center rounded-[4px] bg-[#FFFF]  text-black py-2 font-semibold  shadow-[0px_4px_4px_rgba(0,0,0,0.25)] transition duration-300 ease-in-out hover:bg-[#E6E6E6] focus:outline-none"
           >
             Save & Change
           </button>

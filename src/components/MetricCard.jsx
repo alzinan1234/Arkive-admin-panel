@@ -8,13 +8,13 @@ const MetricCard = () => {
       <div className="flex-1 bg-[#2D2D2D] rounded-lg p-6 flex items-center justify-between shadow-md">
         <div>
           <p className="text-gray-400 text-sm font-normal">Total Earning</p>
-          <h2 className="text-[#DCF3FF] text-3xl font-bold mt-1">$682.5</h2>
+          <h2 className="text-[#FFF] text-3xl font-bold mt-1">$682.5</h2>
         </div>
-        <div className="bg-[#DCF3FF] rounded-full p-3 flex items-center justify-center w-12 h-12">
+        <div className="bg-[#FFF] rounded-full p-3 flex items-center justify-center w-12 h-12">
           {/* You can replace this with an actual chart icon from a library like Heroicons */}
          <svg xmlns="http://www.w3.org/2000/svg" width="31" height="30" viewBox="0 0 31 30" fill="none">
   <g clipPath="url(#clip0_0_589)">
-    <rect width="29.5692" height="29.5692" transform="translate(0.958008 0.346191)" fill="#DCF3FF"/>
+    <rect width="29.5692" height="29.5692" transform="translate(0.958008 0.346191)" fill="#"/>
     <path d="M8.84316 11.681H9.08957C10.0382 11.681 10.8144 12.4571 10.8144 13.4058V22.0302C10.8144 22.9789 10.0382 23.755 9.08957 23.755H8.84316C7.89448 23.755 7.11829 22.9789 7.11829 22.0302V13.4058C7.11829 12.4571 7.89448 11.681 8.84316 11.681ZM15.7426 6.50635C16.6913 6.50635 17.4675 7.28254 17.4675 8.23122V22.0302C17.4675 22.9789 16.6913 23.755 15.7426 23.755C14.794 23.755 14.0178 22.9789 14.0178 22.0302V8.23122C14.0178 7.28254 14.794 6.50635 15.7426 6.50635ZM22.6421 16.3627C23.5908 16.3627 24.367 17.1389 24.367 18.0876V22.0302C24.367 22.9789 23.5908 23.755 22.6421 23.755C21.6934 23.755 20.9172 22.9789 20.9172 22.0302V18.0876C20.9172 17.1389 21.6934 16.3627 22.6421 16.3627Z" fill="#121212"/>
   </g>
   <defs>
@@ -30,9 +30,9 @@ const MetricCard = () => {
       <div className="flex-1 bg-[#2D2D2D] rounded-lg p-6 flex items-center justify-between shadow-md">
         <div>
           <p className="text-gray-400 text-sm">Total User</p>
-          <h2 className="text-[#DCF3FF] text-3xl font-bold mt-1">68</h2>
+          <h2 className=" text-3xl font-bold mt-1">68</h2>
         </div>
-        <div className="bg-[#DCF3FF] rounded-full p-3 flex items-center justify-center w-12 h-12">
+        <div className="bg-[#FFF] rounded-full p-3 flex items-center justify-center w-12 h-12">
           {/* You can replace this with an actual user icon from a library like Heroicons */}
          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 18" fill="none">
   <path fillRule="evenodd" clipRule="evenodd" d="M16.6959 10.187C18.135 11.1639 19.1434 12.4874 19.1434 14.2521V17.4034H22.2946C22.8724 17.4034 23.3451 16.9307 23.3451 16.353V14.2521C23.3451 11.9622 19.5951 10.6072 16.6959 10.187Z" fill="#121212"/>

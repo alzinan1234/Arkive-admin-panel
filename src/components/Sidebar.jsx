@@ -60,13 +60,10 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
       >
         <div className="flex flex-col h-full justify-between border-r border-[#D6D6D6]">
           {/* Logo & Close Button */}
-          <div className="flex items-center justify-between border-b border-[#D6D6D6] pb-4 p-[30px]">
-            <Image
-              src="/ARKIVE.png"
-              alt="Description"
-              width={128}
-              height={39}
-            />
+          <div className="flex items-center justify-between border-b border-[#D6D6D6] py-2 px-4 ">
+           <h1 className="text-white text-[34.86px] font-bold leading-normal tracking-[-0.697px] ">
+                  ARKIVE
+                </h1>
             <button
               onClick={() => setIsOpen(false)}
               className="p-1 hover:bg-gray-600 rounded text-[#494949]"
@@ -105,7 +102,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
                     key={name}
                     href={href}
                     className={`flex items-center py-3 px-4 w-[218px] mx-auto  transition-all rounded-[11px] ${
-                      isActive ? "bg-[#DCF3FF] text-[#131123]" : ""
+                      isActive ? "bg-[#FFFF] text-[#131123]" : ""
                     }`}
                   >
                     <Icon className="w-5 h-5 mr-3" style={{ minWidth: 20, minHeight: 20 }}
@@ -123,7 +120,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
                   key={name}
                   href={href}
                   className={`flex items-center py-3 px-4 w-[218px] mx-auto  transition-all rounded-[11px] ${
-                    isActive ? "bg-[#DCF3FF] text-[#131123]" : ""
+                    isActive ? "bg-[#FFFF] text-[#131123]" : ""
                   }`}
                 >
                   <Icon className="w-5 h-5 mr-3" />

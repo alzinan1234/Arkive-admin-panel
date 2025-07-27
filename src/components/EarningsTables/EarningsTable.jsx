@@ -40,7 +40,7 @@ export default function EarningsTable() {
     <div className="min-h-screen p-4 sm:p-8 ">
       {/* Earnings Overview Card */}
       <h2 className="text-white text-xl font-semibold mb-4">Earning Overview</h2>
-      <div className="bg-[#DCF3FF] rounded-lg p-4 mb-6 w-full md:w-[709px] shadow-lg">
+      <div className="bg-[#FFFF] rounded-lg p-4 mb-6 w-full md:w-[709px] shadow-lg">
         <div className="text-[#181818] text-md font-medium">Total Earning</div>
         <div className="text-4xl font-bold text-[#181818]">$25,215</div>
       </div>
@@ -145,7 +145,7 @@ export default function EarningsTable() {
               onClick={() => setCurrentPage(i + 1)}
               className={`px-3 py-1.5 rounded-lg ${
                 currentPage === i + 1
-                  ? "bg-[#DCF3FF] text-[#181818] font-bold"
+                  ? "bg-[#FFF] text-[#181818] font-bold"
                   : "bg-[#232323] border border-[#333] hover:bg-[#3a3a3a]"
               } transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#DCF3FF]`}
               aria-label={`Page ${i + 1}`}

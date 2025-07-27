@@ -112,7 +112,7 @@ const EarningOverviewChart = () => {
       {/* Header Section */}
       <div className="self-stretch flex flex-col justify-start items-start gap-14">
         <div className="self-stretch flex justify-between items-center">
-          <div className="text-white text-xl font-bold font-montserrat leading-tight">
+          <div className="text-white text-xl font-semibold leading-tight">
             Earning Overview
           </div>
           {/* Year Dropdown */}

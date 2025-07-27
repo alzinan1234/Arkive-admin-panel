@@ -551,7 +551,7 @@ export default function UserList() {
           {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
             <button
               key={p}
-              className={`px-3 py-1 rounded-lg text-sm font-semibold ${p === page ? "bg-[#DCF3FF] text-black" : "bg-gray-700 text-gray-300 hover:bg-gray-600"}`}
+              className={`px-3 py-1 rounded-lg text-sm font-semibold ${p === page ? "bg-[#FFF] text-black" : "bg-gray-700 text-gray-300 hover:bg-gray-600"}`}
               onClick={() => handlePage(p)}
             >
               {p}

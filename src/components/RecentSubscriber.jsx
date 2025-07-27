@@ -40,7 +40,7 @@ const RecentSubscriber = () => {
   return (
     <div className=" w-full px-6 py-6 bg-[#2D2D2D] rounded-[20px] shadow-[0px_2px_12px_0px_rgba(44,120,220,0.08)] flex flex-col justify-start items-start gap-3">
       {/* Card Title */}
-      <div className="self-stretch text-blue-200 text-xl font-bold font-montserrat leading-loose">
+      <div className="self-stretch  text-xl font-semibold leading-loose">
         Recent Subscriber
       </div>
 
@@ -59,10 +59,10 @@ const RecentSubscriber = () => {
                   fallbackText={subscriber.name.split(' ').map(n => n[0]).join('').toUpperCase()}
                 />
                 <div className="flex-1 flex flex-col justify-start items-start">
-                  <div className="text-blue-200 text-sm font-semibold font-montserrat leading-normal">
+                  <div className="t text-sm font-semibold  leading-normal">
                     {subscriber.name}
                   </div>
-                  <div className="self-stretch text-slate-400 text-xs font-medium font-montserrat leading-tight">
+                  <div className="self-stretch text-slate-400 text-xs font-medium  leading-tight">
                     {subscriber.time}
                   </div>
                 </div>
@@ -73,7 +73,7 @@ const RecentSubscriber = () => {
 
         {/* View all button */}
         <button className="inline-flex justify-start items-center gap-[5px] cursor-pointer focus:outline-none">
-          <div className="text-white text-base font-semibold font-montserrat leading-7">
+          <div className="text-white text-base font-semibold  leading-7">
              View all
           </div>
           {/* Arrow Icon */}
