@@ -25,14 +25,14 @@
 
 @font-face {
   font-family: 'Helvetica Neue';
-  src: url('/Helvetica-Neue/HelveticaNeue-Medium.otf') format('woff2');
+  src: url('/Helvetica-Neue/HelveticaNeue-Light.otf') format('woff2');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'Helvetica Neue';
-  src: url('/Helvetica-Neue/HelveticaNeue-Light.otf') format('woff2');
+  src: url('/Helvetica-Neue/HelveticaNeue-Medium.otf') format('woff2');
   font-weight: 600;
   font-style: normal;
   font-display: swap;

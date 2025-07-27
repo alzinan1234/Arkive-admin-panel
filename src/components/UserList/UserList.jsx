@@ -386,7 +386,7 @@ export default function UserList() {
         </div>
       )}
 
-    <div className="w-full text-white px-6 py-5 bg-[#2D2D2D] rounded-[20px] shadow-[0px_2px_12px_0px_rgba(44,120,220,0.08)] font-sans">
+    <div className="w-full text-white px-6 py-5 bg-[#2D2D2D] rounded-[20px] shadow-[0px_2px_12px_0px_rgba(44,120,220,0.08)] ">
       
       {/* Header with Search, Status, and Date Filter Button */}
       

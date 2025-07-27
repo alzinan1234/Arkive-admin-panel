@@ -37,9 +37,9 @@ export default function EarningsTable() {
   };
 
   return (
-    <div className="min-h-screen p-4 sm:p-8  font-inter">
+    <div className="min-h-screen p-4 sm:p-8 ">
       {/* Earnings Overview Card */}
-      <h2 className="text-white text-xl font-bold mb-4">Earning Overview</h2>
+      <h2 className="text-white text-xl font-semibold mb-4">Earning Overview</h2>
       <div className="bg-[#DCF3FF] rounded-lg p-4 mb-6 w-full md:w-[709px] shadow-lg">
         <div className="text-[#181818] text-md font-medium">Total Earning</div>
         <div className="text-4xl font-bold text-[#181818]">$25,215</div>
@@ -50,7 +50,7 @@ export default function EarningsTable() {
         <table className="w-full text-sm text-white table-auto">
           <thead className="text-left bg-[#2a2a2a]">
             <tr>
-              <th className="py-3 px-4 rounded-tl-lg">Serial</th>
+              <th className="py-3 px-4 rounded-tl-lg ">Serial</th>
               <th className="py-3 px-4">Name</th>
               <th className="py-3 px-4">Item Number</th>
               <th className="py-3 px-4">Sale Price</th>

@@ -84,11 +84,11 @@ export default function App() {
               <div className="w-full flex flex-col justify-start gap-[18px]">
                 {/* ARKIVE Logo/Text */}
                 <Image
-                  src="/ARKIVE.png" // Path to your image in the public folder
+                  src="/ARKIVE.png" 
                   alt="Arkive background"
-                  width={128} // Set your desired width
-                  height={39} // Set your desired height
-                  className="" // Optional Tailwind classes
+                  width={128} 
+                  height={39} 
+                  className="" 
                 />
                 <p className="self-stretch text-start text-white text-[24px] font-semibold ">
                   Forget Password

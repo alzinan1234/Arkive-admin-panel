@@ -77,7 +77,7 @@ const SettingsPage = ({ onBackClick }) => {
   };
 
   return (
-    <div className="bg-black rounded-2xl min-h-screen text-white p-6 sm:p-6 lg:p-8 font-inter">
+    <div className="bg-black rounded-2xl min-h-screen text-white p-6 sm:p-6 lg:p-8 ">
       <div className="flex items-center mb-6">
         {onBackClick && (
           <button
@@ -88,7 +88,7 @@ const SettingsPage = ({ onBackClick }) => {
             <ArrowLeftIcon className="h-6 w-6" />
           </button>
         )}
-        <h1 className="text-2xl sm:text-3xl font-bold">Settings</h1>
+        <h1 className="text-2xl sm:text-3xl font-semibold">Settings</h1>
       </div>
 
       <div className="border-b border-gray-700">
@@ -99,7 +99,7 @@ const SettingsPage = ({ onBackClick }) => {
             ) => (
               <button
                 key={tabId}
-                className={`flex-shrink-0 px-4 py-4 text-lg font-medium relative ${
+                className={`flex-shrink-0 px-4 py-4 text-lg font-semibold relative ${
                   activeTab === tabId
                     ? "text-[#DCF3FF]"
                     : "text-gray-400 hover:text-white"
@@ -140,7 +140,7 @@ const SettingsPage = ({ onBackClick }) => {
           <button
             type="button"
             onClick={handleSaveAndChange}
-            className="w-full mx-auto flex justify-center items-center rounded-[4px] bg-[#DCF3FF]  text-black py-2 font-medium"
+            className="w-full mx-auto flex justify-center items-center rounded-[4px] bg-[#DCF3FF]  text-black py-2 font-semibold"
           >
             Save & Change
           </button>
