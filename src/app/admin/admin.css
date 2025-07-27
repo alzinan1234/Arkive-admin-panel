@@ -19,10 +19,41 @@
   }
 }
 
+
+
+
+
+@font-face {
+  font-family: 'Helvetica Neue';
+  src: url('/Helvetica-Neue/HelveticaNeue-Medium.otf') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Helvetica Neue';
+  src: url('/Helvetica-Neue/HelveticaNeue-Light.otf') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Helvetica Neue';
+  src: url('/Helvetica-Neue/HelveticaNeue-Bold.otf') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+/* body {
   background-color: black;
   font-family: 'Montserrat', sans-serif;
-}
+} */
 
 /* The .jodit-container.jodit_theme_dark ensures it only applies when the dark theme is active */
 .jodit-container.jodit_theme_dark .jodit-workplace,

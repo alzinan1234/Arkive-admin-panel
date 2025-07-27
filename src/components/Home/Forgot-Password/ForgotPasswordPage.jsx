@@ -59,7 +59,7 @@ export default function App() {
   };
 
   return (
-    <div className="flex min-h-screen bg-[#1A1A1A] font-[Inter]">
+    <div className="flex min-h-screen bg-[#1A1A1A]">
       <Toaster position="top-center" reverseOrder={false} />
 
       {/* Left Panel - Image background with blur */}
@@ -90,10 +90,10 @@ export default function App() {
                   height={39} // Set your desired height
                   className="" // Optional Tailwind classes
                 />
-                <p className="self-stretch text-start text-white text-[24px] font-semibold font-[Inter]">
+                <p className="self-stretch text-start text-white text-[24px] font-semibold ">
                   Forget Password
                 </p>
-                <p className="self-stretch text-start text-[#DCF3FF] text-sm font-semibold font-[Inter]">
+                <p className="self-stretch text-start text-[#DCF3FF] text-sm font-semibold ">
                   We will send the OTP code to your email for security in
                   forgetting your password
                 </p>
@@ -107,14 +107,14 @@ export default function App() {
                   <div className="self-stretch flex flex-col justify-start items-start gap-2">
                     <label
                       htmlFor="email"
-                      className="self-stretch text-white text-sm font-normal font-[Inter]"
+                      className="self-stretch text-white text-sm font-normal "
                     >
                       Email adress
                     </label>
                     <input
                       type="email"
                       id="email"
-                      className="self-stretch h-10 w-full px-3 py-2.5  rounded-md border border-[#DCDCDC] text-white focus:outline-none focus:ring-1 focus:ring-[#66B8FF] font-[Inter]"
+                      className="self-stretch h-10 w-full px-3 py-2.5  rounded-md border border-[#DCDCDC] text-white focus:outline-none focus:ring-1 focus:ring-[#66B8FF] "
                       placeholder=""
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
@@ -124,7 +124,7 @@ export default function App() {
                 </div>
 
                 {error && (
-                  <p className="text-red-500 text-sm text-center mt-2 font-[Inter]">
+                  <p className="text-red-500 text-sm text-center mt-2 ">
                     {error}
                   </p>
                 )}

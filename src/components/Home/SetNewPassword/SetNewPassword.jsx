@@ -61,7 +61,7 @@ export default function App() {
   };
 
   return (
-    <div className="flex min-h-screen bg-[#1A1A1A] font-[Inter]">
+    <div className="flex min-h-screen bg-[#1A1A1A]">
       <Toaster position="top-center" reverseOrder={false} />
 
       {/* Left Panel - Image background with blur */}
@@ -92,10 +92,10 @@ export default function App() {
                   height={39} // Set your desired height
                   className="" // Optional Tailwind classes
                 />
-                <p className="self-stretch text-start text-white text-[24px] font-semibold font-[Inter]">
+                <p className="self-stretch text-start text-white text-[24px] font-semibold ">
                   Set New Password
                 </p>
-                <p className="self-stretch text-start text-[#DCF3FF] text-sm font-semibold font-[Inter]">
+                <p className="self-stretch text-start text-[#DCF3FF] text-sm font-semibold ">
                   Enter your new password and make sure you remember it:
                 </p>
               </div>
@@ -107,7 +107,7 @@ export default function App() {
                 <div className="self-stretch flex flex-col justify-start items-start gap-2">
                   <label
                     htmlFor="newPassword"
-                    className="self-stretch text-white text-sm font-normal font-[Inter]"
+                    className="self-stretch text-white text-sm font-normal "
                   >
                     Password
                   </label>
@@ -115,7 +115,7 @@ export default function App() {
                     <input
                       type={showNewPassword ? "text" : "password"}
                       id="newPassword"
-                      className="h-10 px-3 py-2.5  rounded-md border border-[#DCDCDC] text-white focus:outline-none focus:ring-1 focus:ring-[#66B8FF] font-[Inter] w-full pr-10"
+                      className="h-10 px-3 py-2.5  rounded-md border border-[#DCDCDC] text-white focus:outline-none focus:ring-1 focus:ring-[#66B8FF]  w-full pr-10"
                       placeholder=""
                       value={newPassword}
                       onChange={(e) => setNewPassword(e.target.value)}
@@ -168,7 +168,7 @@ export default function App() {
                 <div className="self-stretch flex flex-col justify-start items-start gap-2">
                   <label
                     htmlFor="confirmPassword"
-                    className="self-stretch text-white text-sm font-normal font-[Inter]"
+                    className="self-stretch text-white text-sm font-normal "
                   >
                     Confirmed Password
                   </label>

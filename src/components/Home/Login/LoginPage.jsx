@@ -87,7 +87,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex min-h-screen bg-[#1A1A1A] font-[Inter]">
+    <div className="flex min-h-screen bg-[#1A1A1A] ">
       <Toaster position="top-center" reverseOrder={false} />
       {/* Left Red Panel - now with image background and blur */}
       <div
@@ -115,10 +115,10 @@ export default function LoginPage() {
                   height={39} // Set your desired height
                   className=" " // Optional Tailwind classes
                 />
-                <p className="self-stretch text-start text-white text-[24px] font-semibold font-[DM Sans] ">
+                <p className="self-stretch text-start text-white text-[24px] font-semibold  ">
                   Welcome to Arkive
                 </p>
-                <p className="self-stretch text-start text-[#DCF3FF] text-sm font-semibold font-[Inter]">
+                <p className="self-stretch text-start text-[#DCF3FF] text-sm font-semibold ">
                   Sign in to your account
                 </p>
               </div>

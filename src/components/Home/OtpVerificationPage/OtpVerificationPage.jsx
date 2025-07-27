@@ -98,7 +98,7 @@ export default function OtpVerificationPage() {
   };
 
   return (
-    <div className="flex min-h-screen bg-[#1A1A1A] font-[Inter]">
+    <div className="flex min-h-screen bg-[#1A1A1A] ">
       <Toaster position="top-center" reverseOrder={false} />
 
       {/* Left Panel - Image background with blur */}
@@ -129,13 +129,13 @@ export default function OtpVerificationPage() {
                   height={39} // Set your desired height
                   className="" // Optional Tailwind classes
                 />
-                <p className="self-stretch text-start text-white text-[24px] font-semibold font-[Inter]">
+                <p className="self-stretch text-start text-white text-[24px] font-semibold ">
                   OTP Verification
                 </p>
-                <p className="self-stretch text-start text-[#DCF3FF] text-sm font-semibold font-[Inter]">
+                <p className="self-stretch text-start text-[#DCF3FF] text-sm font-semibold">
                   Enter 6-digit Code for getting your password
                 </p>
-                <p className="self-stretch text-start text-[#DCF3FF] text-sm font-semibold font-[Inter]">
+                <p className="self-stretch text-start text-[#DCF3FF] text-sm font-semibold ">
                   We have sent code to{" "}
                   <span className="text-white">tan@gmail.com</span> to verify
                   your registration
