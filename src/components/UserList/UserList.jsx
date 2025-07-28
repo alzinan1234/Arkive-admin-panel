@@ -24,7 +24,7 @@ function AvatarImage({ src, alt }) {
 export default function UserList() {
   const router = useRouter();
 
-  // Initial user data
+  // Initial user data with added 'role'
   const initialUsers = [
     {
       id: "5089",
@@ -36,6 +36,7 @@ export default function UserList() {
       status: "Active",
       email: "jane.cooper@example.com",
       phone: "664 333 224",
+      role: "User", // Added role
     },
     {
       id: "5090",
@@ -47,6 +48,7 @@ export default function UserList() {
       status: "Blocked",
       email: "jerome.bell@example.com",
       phone: "123 456 789",
+      role: "Service Provider", // Added role
     },
     {
       id: "5091",
@@ -58,6 +60,7 @@ export default function UserList() {
       status: "Active",
       email: "jenny.wilson@example.com",
       phone: "987 654 321",
+      role: "User", // Added role
     },
     {
       id: "5092",
@@ -69,6 +72,7 @@ export default function UserList() {
       status: "Blocked",
       email: "ralph.edwards@example.com",
       phone: "555 123 456",
+      role: "Service Provider", // Added role
     },
     {
       id: "5093",
@@ -80,6 +84,7 @@ export default function UserList() {
       status: "Active",
       email: "alice.j@example.com",
       phone: "111 222 333",
+      role: "User", // Added role
     },
     {
       id: "5094",
@@ -91,6 +96,7 @@ export default function UserList() {
       status: "Blocked",
       email: "bob.w@example.com",
       phone: "444 555 666",
+      role: "Service Provider", // Added role
     },
     {
       id: "5095",
@@ -102,6 +108,7 @@ export default function UserList() {
       status: "Active",
       email: "charlie.b@example.com",
       phone: "777 888 999",
+      role: "User", // Added role
     },
     {
       id: "5096",
@@ -113,6 +120,7 @@ export default function UserList() {
       status: "Blocked",
       email: "diana.m@example.com",
       phone: "222 333 444",
+      role: "Service Provider", // Added role
     },
     {
       id: "5097",
@@ -124,6 +132,7 @@ export default function UserList() {
       status: "Active",
       email: "eve.d@example.com",
       phone: "999 000 111",
+      role: "User", // Added role
     },
     {
       id: "5098",
@@ -135,6 +144,7 @@ export default function UserList() {
       status: "Blocked",
       email: "frank.w@example.com",
       phone: "333 444 555",
+      role: "Service Provider", // Added role
     },
   ];
 
@@ -285,11 +295,11 @@ export default function UserList() {
   return (
     <>
 
-    <div>
-<h2 className="text-xl sm:text-2xl font-semibold p-4 sm:p-6 ">User List</h2>
-    </div>
-    
-    <div className="flex flex-col sm:flex-row items-center justify-between mb-4 border-gray-700">
+      <div>
+        <h2 className="text-xl sm:text-2xl font-semibold p-4 sm:p-6 ">User List</h2>
+      </div>
+
+      <div className="flex flex-col sm:flex-row items-center justify-between mb-4 border-gray-700">
         <div className="flex items-center w-full sm:w-auto mb-4 sm:mb-0">
           {/* Search */}
           <div className="relative w-full sm:w-64 mr-0 sm:mr-4">
@@ -319,16 +329,16 @@ export default function UserList() {
           <div className="relative border border-[#E9E7FD] bg-[#2D2D2D]  rounded-lg ml-2">
             <div className="">
               <select
-              className="appearance-none text-gray-400 py-2 pl-3 pr-8 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 "
-              value={status}
-              onChange={handleStatus}
-            >
-              <div className="text-black">
-                <option value="All">Status : All</option>
-              <option value="Active">Active</option>
-              <option value="Blocked">Blocked</option>
-              </div>
-            </select>
+                className="appearance-none text-gray-400 py-2 pl-3 pr-8 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 "
+                value={status}
+                onChange={handleStatus}
+              >
+                <div className="text-black">
+                  <option value="All">Status : All</option>
+                  <option value="Active">Active</option>
+                  <option value="Blocked">Blocked</option>
+                </div>
+              </select>
             </div>
             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-400">
               <svg
@@ -386,144 +396,146 @@ export default function UserList() {
         </div>
       )}
 
-    <div className="w-full text-white px-6 py-5 bg-[#2D2D2D] rounded-[20px] shadow-[0px_2px_12px_0px_rgba(44,120,220,0.08)] ">
-      
-      {/* Header with Search, Status, and Date Filter Button */}
-      
+      <div className="w-full text-white px-6 py-5 bg-[#2D2D2D] rounded-[20px] shadow-[0px_2px_12px_0px_rgba(44,120,220,0.08)] ">
 
-      <div className="overflow-x-auto">
-        <table className="min-w-full divide-y divide-gray-700">
-          <thead>
-            <tr>
-              <th className="px-3 py-3 sm:px-6 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">ID</th>
-              <th className="px-3 py-3 sm:px-6 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
-                <div className="flex items-center">Customer
-                  <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
-                    <path opacity="0.4" d="M16.18 13.4399L12.39 8.38989H6.78C5.82 8.38989 5.34 9.54989 6.02 10.2299L11.2 15.4099C12.03 16.2399 13.38 16.2399 14.21 15.4099L16.18 13.4399Z" fill="#DBDADE" />
-                    <path d="M18.62 8.38989H12.39L16.18 13.4399L19.39 10.2299C20.06 9.54989 19.58 8.38989 18.62 8.38989Z" fill="#DBDADE" />
-                  </svg>
-                </div>
-              </th>
-              <th className="px-3 py-3 sm:px-6 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Join Date</th>
-              <th className="px-3 py-3 sm:px-6 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Status</th>
-              <th className="px-3 py-3 sm:px-6 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Action</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-gray-700">
-            {paginated.length === 0 ? (
+        {/* Header with Search, Status, and Date Filter Button */}
+
+
+        <div className="overflow-x-auto">
+          <table className="min-w-full divide-y divide-gray-700">
+            <thead>
               <tr>
-                <td colSpan={5} className="text-center py-8 text-gray-400">No users found.</td>
+                <th className="px-3 py-3 sm:px-6 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">ID</th>
+                <th className="px-3 py-3 sm:px-6 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
+                  <div className="flex items-center">Customer
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
+                      <path opacity="0.4" d="M16.18 13.4399L12.39 8.38989H6.78C5.82 8.38989 5.34 9.54989 6.02 10.2299L11.2 15.4099C12.03 16.2399 13.38 16.2399 14.21 15.4099L16.18 13.4399Z" fill="#DBDADE" />
+                      <path d="M18.62 8.38989H12.39L16.18 13.4399L19.39 10.2299C20.06 9.54989 19.58 8.38989 18.62 8.38989Z" fill="#DBDADE" />
+                    </svg>
+                  </div>
+                </th>
+                <th className="px-3 py-3 sm:px-6 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Join Date</th>
+                <th className="px-3 py-3 sm:px-6 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Role</th> {/* New Role Header */}
+                <th className="px-3 py-3 sm:px-6 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Status</th>
+                <th className="px-3 py-3 sm:px-6 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Action</th>
               </tr>
-            ) : (
-              paginated.map((user, index) => (
-                <tr key={user.id}>
-                  <td className="px-3 py-3 sm:px-6 whitespace-nowrap text-sm font-medium text-gray-300">#{user.id}</td>
-                  <td className="px-3 py-3 sm:px-6 whitespace-nowrap">
-                    <div className="flex items-center">
-                      <div className="flex-shrink-0 h-8 w-8 sm:h-10 sm:w-10 rounded-full overflow-hidden">
-                        <AvatarImage src={user.customer.avatar} alt={user.customer.name} />
-                      </div>
-                      <div className="ml-2 sm:ml-4">
-                        <div className="text-sm font-medium text-gray-200">{user.customer.name}</div>
-                      </div>
-                    </div>
-                  </td>
-                  <td className="px-3 py-3 sm:px-6 whitespace-nowrap text-sm text-gray-300">{user.joinDate}</td>
-                  <td className="px-3 py-3 sm:px-6 whitespace-nowrap">
-                    <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${user.status === "Active" ? " text-[#4BB54B]" : " text-[#F33437]"}`}>{user.status}</span>
-                  </td>
-                  <td className="px-3 py-3 sm:px-6 whitespace-nowrap text-sm font-medium">
-                    <div className="flex items-center space-x-2">
-                      {/* Eye icon for view */}
-                      <button onClick={() => handleView(user)} title="View details">
-                        <svg className="h-5 w-5 text-orange-400 cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
-                        </svg>
-                      </button>
-                      {/* Action icon based on status */}
-                      {user.status === "Active" ? (
-                        <button onClick={() => handleBlockUnblockClick(user)} title="Block user">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" fill="none" className="cursor-pointer">
-                            <g clipPath="url(#clip0_0_736)">
-                              <path d="M7.6001 0.209961C3.75283 0.209961 0.600098 3.3627 0.600098 7.20996C0.600098 11.0572 3.75283 14.21 7.6001 14.21C11.4474 14.21 14.6001 11.0572 14.6001 7.20996C14.6001 3.3627 11.4474 0.209961 7.6001 0.209961ZM2.26807 7.20996C2.26807 4.27321 4.66335 1.87793 7.6001 1.87793C8.70749 1.87793 9.77395 2.22243 10.6845 2.87048L7.6001 5.95486L3.26067 10.2943C2.61257 9.38376 2.26807 8.31736 2.26807 7.20996ZM7.6001 12.542C6.4927 12.542 5.42624 12.1974 4.51572 11.5494L11.9396 4.12556C12.5876 5.03611 12.9321 6.10251 12.9321 7.20996C12.9321 10.1467 10.5368 12.542 7.6001 12.542Z" fill="#FF3636" />
-                            </g>
-                            <defs>
-                              <clipPath id="clip0_0_736">
-                                <rect width="14" height="14" fill="white" transform="translate(0.600098 0.209961)" />
-                              </clipPath>
-                            </defs>
-                          </svg>
-                        </button>
-                      ) : (
-                        <button onClick={() => handleBlockUnblockClick(user)} title="Unblock user">
-                          <svg className="h-5 w-5 text-green-500 cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
-                          </svg>
-                        </button>
-                      )}
-                      {/* Delete icon */}
-                      {/* <button onClick={() => handleDelete(user)} title="Delete user">
-                        <svg className="h-5 w-5 text-red-500 cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                      </button> */}
-                    </div>
-                  </td>
+            </thead>
+            <tbody className="divide-y divide-gray-700">
+              {paginated.length === 0 ? (
+                <tr>
+                  <td colSpan={6} className="text-center py-8 text-gray-400">No users found.</td> {/* Updated colspan */}
                 </tr>
-              ))
-            )}
-          </tbody>
-        </table>
+              ) : (
+                paginated.map((user, index) => (
+                  <tr key={user.id}>
+                    <td className="px-3 py-3 sm:px-6 whitespace-nowrap text-sm font-medium text-gray-300">#{user.id}</td>
+                    <td className="px-3 py-3 sm:px-6 whitespace-nowrap">
+                      <div className="flex items-center">
+                        <div className="flex-shrink-0 h-8 w-8 sm:h-10 sm:w-10 rounded-full overflow-hidden">
+                          <AvatarImage src={user.customer.avatar} alt={user.customer.name} />
+                        </div>
+                        <div className="ml-2 sm:ml-4">
+                          <div className="text-sm font-medium text-gray-200">{user.customer.name}</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="px-3 py-3 sm:px-6 whitespace-nowrap text-sm text-gray-300">{user.joinDate}</td>
+                    <td className="px-3 py-3 sm:px-6 whitespace-nowrap text-sm text-gray-300">{user.role}</td> {/* Display Role */}
+                    <td className="px-3 py-3 sm:px-6 whitespace-nowrap">
+                      <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${user.status === "Active" ? " text-[#4BB54B]" : " text-[#F33437]"}`}>{user.status}</span>
+                    </td>
+                    <td className="px-3 py-3 sm:px-6 whitespace-nowrap text-sm font-medium">
+                      <div className="flex items-center space-x-2">
+                        {/* Eye icon for view */}
+                        <button onClick={() => handleView(user)} title="View details">
+                          <svg className="h-5 w-5 text-orange-400 cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                          </svg>
+                        </button>
+                        {/* Action icon based on status */}
+                        {user.status === "Active" ? (
+                          <button onClick={() => handleBlockUnblockClick(user)} title="Block user">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" fill="none" className="cursor-pointer">
+                              <g clipPath="url(#clip0_0_736)">
+                                <path d="M7.6001 0.209961C3.75283 0.209961 0.600098 3.3627 0.600098 7.20996C0.600098 11.0572 3.75283 14.21 7.6001 14.21C11.4474 14.21 14.6001 11.0572 14.6001 7.20996C14.6001 3.3627 11.4474 0.209961 7.6001 0.209961ZM2.26807 7.20996C2.26807 4.27321 4.66335 1.87793 7.6001 1.87793C8.70749 1.87793 9.77395 2.22243 10.6845 2.87048L7.6001 5.95486L3.26067 10.2943C2.61257 9.38376 2.26807 8.31736 2.26807 7.20996ZM7.6001 12.542C6.4927 12.542 5.42624 12.1974 4.51572 11.5494L11.9396 4.12556C12.5876 5.03611 12.9321 6.10251 12.9321 7.20996C12.9321 10.1467 10.5368 12.542 7.6001 12.542Z" fill="#FF3636" />
+                              </g>
+                              <defs>
+                                <clipPath id="clip0_0_736">
+                                  <rect width="14" height="14" fill="white" transform="translate(0.600098 0.209961)" />
+                                </clipPath>
+                              </defs>
+                            </svg>
+                          </button>
+                        ) : (
+                          <button onClick={() => handleBlockUnblockClick(user)} title="Unblock user">
+                            <svg className="h-5 w-5 text-green-500 cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                            </svg>
+                          </button>
+                        )}
+                        {/* Delete icon */}
+                        {/* <button onClick={() => handleDelete(user)} title="Delete user">
+                          <svg className="h-5 w-5 text-red-500 cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                          </svg>
+                        </button> */}
+                      </div>
+                    </td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
+        </div>
+
+
+
+        {/* Confirmation Modal (for Unblock) */}
+        <AnimatePresence>
+          {showConfirmation && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70"
+            >
+              <motion.div
+                initial={{ scale: 0.9, y: 50 }}
+                animate={{ scale: 1, y: 0 }}
+                exit={{ scale: 0.9, y: 50 }}
+                className="bg-[#2D2D2D] p-8 rounded-lg shadow-lg max-w-sm w-full text-center"
+              >
+                <h3 className="text-xl font-semibold mb-4 text-white">Are you sure !</h3>
+                {userToUnblock && (
+                  <p className="text-gray-300 mb-6">You want to Unblock {userToUnblock.customer.name}?</p>
+                )}
+                <div className="flex justify-center space-x-4">
+                  <button
+                    onClick={handleCancelUnblock}
+                    className="px-6 py-2 rounded-lg text-gray-300 border border-[#E9E7FD] bg-[#4A4A4A] hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    onClick={() => handleBlockUnblock(userToUnblock)}
+                    className="px-6 py-2 rounded-lg bg-[#4CAF50] text-white hover:bg-[#45A049] focus:outline-none focus:ring-2 focus:ring-green-500"
+                  >
+                    Confirm
+                  </button>
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+        <Toaster /> {/* Add Toaster component here */}
       </div>
 
-     
-
-      {/* Confirmation Modal (for Unblock) */}
-      <AnimatePresence>
-        {showConfirmation && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70"
-          >
-            <motion.div
-              initial={{ scale: 0.9, y: 50 }}
-              animate={{ scale: 1, y: 0 }}
-              exit={{ scale: 0.9, y: 50 }}
-              className="bg-[#2D2D2D] p-8 rounded-lg shadow-lg max-w-sm w-full text-center"
-            >
-              <h3 className="text-xl font-semibold mb-4 text-white">Are you sure !</h3>
-              {userToUnblock && (
-                <p className="text-gray-300 mb-6">You want to Unblock {userToUnblock.customer.name}?</p>
-              )}
-              <div className="flex justify-center space-x-4">
-                <button
-                  onClick={handleCancelUnblock}
-                  className="px-6 py-2 rounded-lg text-gray-300 border border-[#E9E7FD] bg-[#4A4A4A] hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                >
-                  Cancel
-                </button>
-                <button
-                  onClick={() => handleBlockUnblock(userToUnblock)}
-                  className="px-6 py-2 rounded-lg bg-[#4CAF50] text-white hover:bg-[#45A049] focus:outline-none focus:ring-2 focus:ring-green-500"
-                >
-                  Confirm
-                </button>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-      <Toaster /> {/* Add Toaster component here */}
-    </div>
-
-     {/* Pagination */}
+      {/* Pagination */}
       <div className="flex items-center justify-between p-4 sm:p-6  border-gray-700">
         {/* Page size dropdown */}
         <div className="relative inline-block text-left">
-         Showing
+          Showing
           <select
             className="appearance-none text-gray-300 border border-[#E9E7FD] py-2 pl-3 pr-8 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 "
             value={pageSize}

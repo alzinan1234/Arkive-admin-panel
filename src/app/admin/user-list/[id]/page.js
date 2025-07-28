@@ -173,7 +173,7 @@ export default function UserDetailsPage({ params }) {
           transition={{ duration: 0.3, ease: "easeInOut" }}
         >
           <div className="flex justify-between items-center mb-4">
-            <h2 className="text-xl font-bold text-[#DCF3FF]">User Details</h2>
+            <h2 className="text-xl font-bold text-[#DCF3FF]"> Details</h2>
             <button
               className="text-white text-xl font-bold hover:text-red-500"
               onClick={() => router.back()}
