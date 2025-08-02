@@ -230,7 +230,7 @@ export default function UserList() {
     <>
 
       <div>
-        <h2 className="text-xl sm:text-2xl font-semibold p-4 sm:p-6 ">User List</h2>
+        <h2 className="text-xl sm:text-2xl font-semibold  pb-5 ">User List</h2>
       </div>
 
     

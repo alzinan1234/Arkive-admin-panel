@@ -108,9 +108,13 @@ export default function LoginPage() {
           <div className="self-stretch flex flex-col justify-start items-center gap-[30px]">
             <div className="self-stretch flex flex-col justify-center items-center gap-[30px]">
               <div className="w-full flex flex-col justify-start gap-[18px]">
-                <h1 className="text-white text-[34.86px] font-bold leading-normal tracking-[-0.697px] ">
-                  ARKIVE
-                </h1>
+                <Image
+                  src="/ark-logo.png" 
+                  alt="Arkive"
+                  width={170} 
+                  height={150} 
+                  className="rounded-lg" 
+                />
                 <p className="self-stretch text-start text-white text-[24px] font-semibold">
                   Welcome to Arkive
                 </p>
