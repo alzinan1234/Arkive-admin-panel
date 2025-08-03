@@ -29,26 +29,45 @@ const navItems = [
     href: "/admin/user-list",
     icon: Users,
   },
-{ name: "Earning Overview", href: "/admin/earning", icon: (props) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none" {...props}>
-  <path d="M13.9 18.2672H11.39C9.75 18.2672 8.42 16.8872 8.42 15.1872C8.42 14.7772 8.76 14.4372 9.17 14.4372C9.58 14.4372 9.92 14.7772 9.92 15.1872C9.92 16.0572 10.58 16.7672 11.39 16.7672H13.9C14.55 16.7672 15.09 16.1872 15.09 15.4872C15.09 14.6172 14.78 14.4472 14.27 14.2672L10.24 12.8472C9.46 12.5772 8.41 11.9972 8.41 10.2072C8.41 8.66725 9.62 7.42725 11.1 7.42725H13.61C15.25 7.42725 16.58 8.80725 16.58 10.5072C16.58 10.9172 16.24 11.2572 15.83 11.2572C15.42 11.2572 15.08 10.9172 15.08 10.5072C15.08 9.63725 14.42 8.92725 13.61 8.92725H11.1C10.45 8.92725 9.91 9.50725 9.91 10.2072C9.91 11.0772 10.22 11.2472 10.73 11.4272L14.76 12.8472C15.54 13.1172 16.59 13.6972 16.59 15.4872C16.58 17.0172 15.38 18.2672 13.9 18.2672Z" fill="white"/>
-  <path d="M12.5 19.5972C12.09 19.5972 11.75 19.2572 11.75 18.8472V6.84717C11.75 6.43717 12.09 6.09717 12.5 6.09717C12.91 6.09717 13.25 6.43717 13.25 6.84717V18.8472C13.25 19.2572 12.91 19.5972 12.5 19.5972Z" fill="white"/>
-  <path d="M15.5 23.5972H9.5C4.07 23.5972 1.75 21.2772 1.75 15.8472V9.84717C1.75 4.41717 4.07 2.09717 9.5 2.09717H15.5C20.93 2.09717 23.25 4.41717 23.25 9.84717V15.8472C23.25 21.2772 20.93 23.5972 15.5 23.5972ZM9.5 3.59717C4.89 3.59717 3.25 5.23717 3.25 9.84717V15.8472C3.25 20.4572 4.89 22.0972 9.5 22.0972H15.5C20.11 22.0972 21.75 20.4572 21.75 15.8472V9.84717C21.75 5.23717 20.11 3.59717 15.5 3.59717H9.5Z" fill="white"/>
-</svg>
-) },
+  {
+    name: "Earning Overview",
+    href: "/admin/earning",
+    icon: (props) => (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="25"
+        height="25"
+        viewBox="0 0 25 25"
+        fill="none"
+        {...props}
+      >
+        <path
+          d="M13.9 18.2672H11.39C9.75 18.2672 8.42 16.8872 8.42 15.1872C8.42 14.7772 8.76 14.4372 9.17 14.4372C9.58 14.4372 9.92 14.7772 9.92 15.1872C9.92 16.0572 10.58 16.7672 11.39 16.7672H13.9C14.55 16.7672 15.09 16.1872 15.09 15.4872C15.09 14.6172 14.78 14.4472 14.27 14.2672L10.24 12.8472C9.46 12.5772 8.41 11.9972 8.41 10.2072C8.41 8.66725 9.62 7.42725 11.1 7.42725H13.61C15.25 7.42725 16.58 8.80725 16.58 10.5072C16.58 10.9172 16.24 11.2572 15.83 11.2572C15.42 11.2572 15.08 10.9172 15.08 10.5072C15.08 9.63725 14.42 8.92725 13.61 8.92725H11.1C10.45 8.92725 9.91 9.50725 9.91 10.2072C9.91 11.0772 10.22 11.2472 10.73 11.4272L14.76 12.8472C15.54 13.1172 16.59 13.6972 16.59 15.4872C16.58 17.0172 15.38 18.2672 13.9 18.2672Z"
+          fill="white"
+        />
+        <path
+          d="M12.5 19.5972C12.09 19.5972 11.75 19.2572 11.75 18.8472V6.84717C11.75 6.43717 12.09 6.09717 12.5 6.09717C12.91 6.09717 13.25 6.43717 13.25 6.84717V18.8472C13.25 19.2572 12.91 19.5972 12.5 19.5972Z"
+          fill="white"
+        />
+        <path
+          d="M15.5 23.5972H9.5C4.07 23.5972 1.75 21.2772 1.75 15.8472V9.84717C1.75 4.41717 4.07 2.09717 9.5 2.09717H15.5C20.93 2.09717 23.25 4.41717 23.25 9.84717V15.8472C23.25 21.2772 20.93 23.5972 15.5 23.5972ZM9.5 3.59717C4.89 3.59717 3.25 5.23717 3.25 9.84717V15.8472C3.25 20.4572 4.89 22.0972 9.5 22.0972H15.5C20.11 22.0972 21.75 20.4572 21.75 15.8472V9.84717C21.75 5.23717 20.11 3.59717 15.5 3.59717H9.5Z"
+          fill="white"
+        />
+      </svg>
+    ),
+  },
   { name: "Settings", href: "/admin/settings", icon: Settings },
 ];
 
 const Sidebar = ({ isOpen, setIsOpen }) => {
   const router = useRouter();
 
-
   const handleLogout = () => {
     // Implement logout functionality here
     console.log("User logged out");
     // Redirect to login page or perform any other action
- router.push("/") // Example redirect
-  }
+    router.push("/"); // Example redirect
+  };
   const pathname = usePathname();
 
   return (
@@ -60,10 +79,14 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
       >
         <div className="flex flex-col h-full justify-between border-r border-[#D6D6D6]">
           {/* Logo & Close Button */}
-          <div className="flex items-center justify-between border-b border-[#D6D6D6] py-2 px-4 ">
-           <h1 className="text-white text-[34.86px] font-bold leading-normal tracking-[-0.697px] ">
-                  ARKIVE
-                </h1>
+          <div className="flex items-center justify-between border-b border-[#D6D6D6] py-4 px-4 ">
+            <Image
+              src="/ark-logo.png"
+              alt="Arkive"
+              width={160}
+              height={150}
+              className="rounded-lg"
+            />
             <button
               onClick={() => setIsOpen(false)}
               className="p-1 hover:bg-gray-600 rounded text-[#494949]"
@@ -105,7 +128,9 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
                       isActive ? "bg-[#FFFF] text-[#131123]" : ""
                     }`}
                   >
-                    <Icon className="w-5 h-5 mr-3" style={{ minWidth: 20, minHeight: 20 }}
+                    <Icon
+                      className="w-5 h-5 mr-3"
+                      style={{ minWidth: 20, minHeight: 20 }}
                       // Change SVG color based on active state
                       // The SVG uses fill="#FFFFFF" for white, change to black if active
                       // We'll override fill via props
@@ -150,7 +175,10 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
 
           {/* Logout Button */}
           <div className="border-t border-[#D6D6D6] py-5 ">
-            <button onClick={handleLogout} className="flex ml-9 gap-2 cursor-pointer items-center text-[#FF0000] hover:text-red-600">
+            <button
+              onClick={handleLogout}
+              className="flex ml-9 gap-2 cursor-pointer items-center text-[#FF0000] hover:text-red-600"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="20"
