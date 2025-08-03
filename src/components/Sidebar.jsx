@@ -85,7 +85,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
               alt="Arkive"
               width={160}
               height={150}
-              className="rounded-lg"
+              className="rounded-lg h-9"
             />
             <button
               onClick={() => setIsOpen(false)}
