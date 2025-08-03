@@ -87,7 +87,7 @@ export default function App() {
                   alt="Arkive"
                   width={170}
                   height={150}
-                  className="rounded-lg"
+                  className="rounded-lg h-10"
                 />
                 <p className="self-stretch text-start text-white text-[24px] font-semibold ">
                   Forget Password

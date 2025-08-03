@@ -107,13 +107,13 @@ export default function LoginPage() {
         <div className="md:w-[564px] p-10 rounded-[15px] flex flex-col justify-center items-center gap-10">
           <div className="self-stretch flex flex-col justify-start items-center gap-[30px]">
             <div className="self-stretch flex flex-col justify-center items-center gap-[30px]">
-              <div className="w-full flex flex-col justify-start gap-[18px]">
+              <div className="w-full  flex flex-col justify-start gap-[18px]">
                 <Image
                   src="/ark-logo.png" 
                   alt="Arkive"
                   width={170} 
                   height={150} 
-                  className="rounded-lg" 
+                  className="rounded-lg h-10" 
                 />
                 <p className="self-stretch text-start text-white text-[24px] font-semibold">
                   Welcome to Arkive
