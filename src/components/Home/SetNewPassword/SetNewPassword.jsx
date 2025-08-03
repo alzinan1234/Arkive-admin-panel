@@ -107,7 +107,7 @@ export default function App() {
                 <div className="self-stretch flex flex-col justify-start items-start gap-2">
                   <label
                     htmlFor="newPassword"
-                    className="self-stretch text-white text-sm font-normal "
+                    className="self-stretch text-white text-sm font-semibold "
                   >
                     Password
                   </label>
@@ -115,7 +115,7 @@ export default function App() {
                     <input
                       type={showNewPassword ? "text" : "password"}
                       id="newPassword"
-                      className="h-10 px-3 py-2.5  rounded-md border border-[#DCDCDC] text-white focus:outline-none focus:ring-1 focus:ring-[#66B8FF]  w-full pr-10"
+                      className="h-10 px-3 py-2.5 font-semibold  rounded-md border border-[#DCDCDC] text-white focus:outline-none focus:ring-1 focus:ring-[#66B8FF]  w-full pr-10"
                       placeholder=""
                       value={newPassword}
                       onChange={(e) => setNewPassword(e.target.value)}
@@ -168,7 +168,7 @@ export default function App() {
                 <div className="self-stretch flex flex-col justify-start items-start gap-2">
                   <label
                     htmlFor="confirmPassword"
-                    className="self-stretch text-white text-sm font-normal "
+                    className="self-stretch text-white text-sm font-semibold "
                   >
                     Confirmed Password
                   </label>
@@ -176,7 +176,7 @@ export default function App() {
                     <input
                       type={showConfirmPassword ? "text" : "password"}
                       id="confirmPassword"
-                      className="h-10 px-3 py-2.5  rounded-md border border-[#DCDCDC] text-white focus:outline-none focus:ring-1 focus:ring-[#66B8FF] font-[Inter] w-full pr-10"
+                      className="h-10 px-3 py-2.5  rounded-md border font-semibold border-[#DCDCDC] text-white focus:outline-none focus:ring-1 focus:ring-[#66B8FF]  w-full pr-10"
                       placeholder=""
                       value={confirmPassword}
                       onChange={(e) => setConfirmPassword(e.target.value)}
